@@ -1,0 +1,36 @@
+<h2>Feeds</h2>
+
+<%= form_for :feed do |f| %>
+	<%= f.label :feed_url, 'feed URL' %>
+	<%= f.text_field :feed_url %>
+	<%= f.submit 'add feed' %>
+<% end %>
+
+<hr />
+
+
+<table>
+	<tr>
+		<th>id</th>
+		<th>title</th>
+		<th>feed_url</th>
+		<th>url</th>
+		<th>etag</th>
+		<th>last_modified</th>
+		<th>items</th>
+	</tr>
+
+<% for feed in @feeds %>
+	<tr>
+		<td><%= feed.id %></td>
+		<td><%= feed.title %></td>
+		<td><%= feed.feed_url %></td>
+		<td><%= feed.url %></td>
+		<td><%= feed.etag %></td>
+		<td><%= feed.last_modified %></td>
+		<td><%= feed.entries.length if feed.respond_to? 'entries' %></td>
+		<td><%= link_to '[x]', feed_path(feed), method: :delete %></td>
+	</tr>
+<% end %>
+
+</table>
