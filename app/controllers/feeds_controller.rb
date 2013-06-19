@@ -5,10 +5,12 @@ class FeedsController < ApplicationController
 		@feeds = Feed.all
 	end
 
+	def show
+		@feed = update_feed(Feed.find(params[:id]))
+	end
 
 	def create
 		@feed = create_feed(params.require(:feed)[:feed_url])
-		@feed.save
 		redirect_to feeds_path
 	end
 

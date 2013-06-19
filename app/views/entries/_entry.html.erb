@@ -1,0 +1,13 @@
+<div class="entry">
+	<h4><%= entry.title %></h4>
+	<dl>
+		<dt>url</dt>
+		<dd><%= entry.url %></dd>
+		<dt>author</dt>
+		<dd><%= entry.author %></dd>
+		<dt>published</dt>
+		<dd><%= time_ago_in_words entry.published %></dd>
+		<dt>summary</dt>
+		<dd><%= raw entry.summary %></dd>
+	</dl>
+</div>

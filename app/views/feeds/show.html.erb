@@ -1,0 +1,27 @@
+<h2>Feed View</h2>
+
+<%= link_to 'Back', feeds_path %>
+
+<dl>
+	<dt>title</dt>
+	<dd><%= @feed.title %></dd>
+	<dt>url</dt>
+	<dd><%= @feed.url %></dd>
+	<dt>feed-url</dt>
+	<dd><%= @feed.feed_url %></dd>
+	<dt>etag</dt>
+	<dd><%= @feed.etag %></dd>
+	<dt># entries</dt>
+	<dd><%= @feed.entries.length %></dd>
+	<dt>last-modified</dt>
+	<dd><%= time_ago_in_words @feed.last_modified %></dd>
+	<dt>last-updated</dt>
+	<dd><%= time_ago_in_words @feed.updated_at %></dd>
+</dl>
+
+<hr />
+
+<h3>Entries</h3>
+<%= render @feed.entries %>
+
+</table>
