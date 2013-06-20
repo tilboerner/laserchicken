@@ -1,28 +1,37 @@
-== README
+= Laserchicken
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Reads your feeds, 'cause Google won't.
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+== Hatching
+
+*Growth Status:* _fertilization_
+
+*can:*
+
+* add and update feeds
+* display entries (only summary shown atm)
+
+*will can*:
+
+* error handling
+* pagination
+* update-ability from external: POST to /feeds/X/entries
+* users (subscribe to feeds, read entries)
+* users star entries
+* good looks
+
+
+== Usage
+
+* Ruby +1.9.3+ or above, +2.0+ preferred
+* Rails 4
+* Feedzirra for easy fetching and parsing
+
+	$ cd LASERCHICKEN_PATH
+    $ bundle install --path ~/.gem
+    $ rails server
+
+== Places of interest:
+
+See git commit diffs for interesting files.
