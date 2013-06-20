@@ -31,6 +31,7 @@ Growth Status: _fertilization_
 
     $ cd LASERCHICKEN_PATH
     $ bundle install --path ~/.gem
+    $ rake db:migrate
     $ rails server
 
 == Places of interest:
