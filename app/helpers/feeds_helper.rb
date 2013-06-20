@@ -1,11 +1,10 @@
 module FeedsHelper
 
 	def create_feed(url)
-		feedparser = Feedzirra::Feed.fetch_and_parse(url)
-		feed = parser_to_model(feedparser)
+		feed = Feed.new
+		feed.feed_url = url
 		feed.save
-		create_entries(feed, feedparser.entries)
-		feed
+		update_feed(feed)
 	end
 
 
@@ -21,10 +20,6 @@ module FeedsHelper
 
 
 private
-
-	def parser_to_model(p)
-		Feed.new p.instance_values.slice 'title', 'url', 'feed_url', 'etag', 'last_modified'
-	end
 	
 	def model_to_parser(model)
 		# https://gist.github.com/pauldix/132671
@@ -32,6 +27,11 @@ private
 		p.feed_url = model.feed_url
 		p.etag = model.etag
 		p.last_modified = model.last_modified
+		if model.entries.first
+			latest = Feedzirra::Parser::RSSEntry.new
+			latest.url = model.entries.first.url
+			p.entries = [latest]
+		end
 		p
 	end
 
