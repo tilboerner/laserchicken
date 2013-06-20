@@ -7,12 +7,12 @@ Reads your feeds, 'cause Google won't.
 
 Growth Status: _fertilization_
 
-*can:*
+=== can:
 
 * add and update feeds
 * display entries (only summary shown atm)
 
-*will can:*
+=== will can:
 
 * error handling
 * pagination
@@ -35,4 +35,4 @@ Growth Status: _fertilization_
 
 == Places of interest:
 
-See git commit diffs for interesting files.
+See {git commit diffs}[commits/master] for interesting files.
