@@ -5,14 +5,14 @@ Reads your feeds, 'cause Google won't.
 
 == Hatching
 
-*Growth Status:* _fertilization_
+Growth Status: _fertilization_
 
 *can:*
 
 * add and update feeds
 * display entries (only summary shown atm)
 
-*will can*:
+*will can:*
 
 * error handling
 * pagination
@@ -25,10 +25,11 @@ Reads your feeds, 'cause Google won't.
 == Usage
 
 * Ruby +1.9.3+ or above, +2.0+ preferred
-* Rails 4
+* Rails 4 (!)
 * Feedzirra for easy fetching and parsing
 
-	$ cd LASERCHICKEN_PATH
+
+    $ cd LASERCHICKEN_PATH
     $ bundle install --path ~/.gem
     $ rails server
 
