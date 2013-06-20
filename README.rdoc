@@ -35,4 +35,4 @@ Growth Status: _fertilization_
 
 == Places of interest:
 
-See {git commit diffs}[commits/master] for interesting files.
+See {git commit diffs}[https://github.com/tilboerner/laserchicken/commits/master] for interesting files.
