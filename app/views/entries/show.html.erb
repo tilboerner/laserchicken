@@ -1,0 +1,16 @@
+<div class="entry">
+	Feed: <%= link_to @feed.title, feed_path(@feed, anchor: @entry.id) %>
+	<h4><%= @entry.title =%></h4>
+	<dl>
+		<dt>url</dt>
+		<dd><a href="<%= @entry.url %>"><%= @entry.url %></a></dd>
+		<dt>author</dt>
+		<dd><%= @entry.author %></dd>
+		<dt>published</dt>
+		<dd><%= time_ago_in_words @entry.published %></dd>
+	</dl>
+	<div>
+		<%= @entry.content.html_safe %>
+	</div>
+
+</div>
