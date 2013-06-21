@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130619123346) do
+ActiveRecord::Schema.define(version: 20130621134332) do
 
   create_table "entries", force: true do |t|
     t.string   "title"
@@ -36,5 +36,15 @@ ActiveRecord::Schema.define(version: 20130619123346) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "users", force: true do |t|
+    t.string   "name"
+    t.string   "password_digest"
+    t.boolean  "is_admin"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["name"], name: "index_users_on_name", unique: true
 
 end
