@@ -1,4 +1,6 @@
 Laserchicken::Application.routes.draw do
+  resources :users
+
   resources :feeds
 
   resources :feeds do
