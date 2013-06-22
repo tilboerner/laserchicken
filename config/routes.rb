@@ -1,8 +1,14 @@
 Laserchicken::Application.routes.draw do
+  get "sessions/new"
+  get "sessions/create"
+  get "sessions/destroy"
   resources :users
+  resources :sessions, only: [:new, :create, :destroy]
+
+  get '/login', to: 'sessions#new'
+  get '/logout', to: 'sessions#destroy', via: :delete
 
   resources :feeds
-
   resources :feeds do
     resources :entries
   end

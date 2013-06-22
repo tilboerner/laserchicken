@@ -8,6 +8,15 @@
 </head>
 <body>
 
+<h1>I am Laserchicken!</h1>
+<% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
+<% if signed_in? %>
+	<div>Hi, <%= current_user.name %>! <%= link_to "logout", logout_path %></div>
+<% end %>
+
 <%= yield %>
 
 </body>
