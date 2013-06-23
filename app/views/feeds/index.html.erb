@@ -1,10 +1,5 @@
 <h2>Feeds</h2>
 
-<%= form_for :feed do |f| %>
-	<%= f.text_field :feed_url %>
-	<%= f.submit 'add feed' %>
-<% end %>
-
 <hr />
 
 
@@ -12,6 +7,8 @@
 	<tr>
 		<th>id</th>
 		<th>title</th>
+		<th>subscriptions</th>
+		<th>starred</th>
 		<th>feed_url</th>
 		<th>url</th>
 		<th>etag</th>
@@ -23,6 +20,8 @@
 	<tr>
 		<td><%= feed.id %></td>
 		<td><%= link_to feed.title, feed_path(feed) %></td>
+		<td><%= feed.subscriptions.count %></td>
+		<td><%= feed.entries.starred.count %></td>
 		<td><%= feed.feed_url %></td>
 		<td><%= feed.url %></td>
 		<td><%= feed.etag %></td>

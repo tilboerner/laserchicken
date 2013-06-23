@@ -1,5 +1,6 @@
 class Feed < ActiveRecord::Base
 	has_many :entries, dependent: :destroy
+	has_many :subscriptions, dependent: :destroy
 
 	include FeedsHelper
 

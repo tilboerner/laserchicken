@@ -1,0 +1,35 @@
+<h2>Subscriptions</h2>
+
+<%= form_for :subscription do |f| %>
+	<%= f.text_field :feed_url %>
+	<%= f.submit 'subscribe' %>
+<% end %>
+
+<hr />
+
+
+<table>
+	<tr>
+		<th>id</th>
+		<th>title</th>
+		<th>feed_url</th>
+		<th>url</th>
+		<th>etag</th>
+		<th>last_modified</th>
+		<th>items</th>
+	</tr>
+
+<% for subscription in @subscriptions %>
+	<tr>
+		<td><%= subscription.feed.id %></td>
+		<td><%= link_to subscription.feed.title, subscription_path(subscription) %></td>
+		<td><%= subscription.feed.feed_url %></td>
+		<td><%= subscription.feed.url %></td>
+		<td><%= subscription.feed.etag %></td>
+		<td><%= subscription.feed.last_modified %></td>
+		<td><%= subscription.feed.entries.count %></td>
+		<td><%= link_to '[x]', subscription_path(subscription), method: :delete %></td>
+	</tr>
+<% end %>
+
+</table>

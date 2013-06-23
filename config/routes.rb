@@ -3,6 +3,7 @@ Laserchicken::Application.routes.draw do
   get "sessions/create"
   get "sessions/destroy"
   resources :users
+  resources :subscriptions, only: [:index, :show, :create, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
 
   get '/login', to: 'sessions#new'
