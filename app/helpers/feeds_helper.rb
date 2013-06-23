@@ -1,13 +1,5 @@
 module FeedsHelper
 
-	def create_feed(url)
-		feed = Feed.new
-		feed.feed_url = url
-		feed.save
-		update_feed(feed)
-	end
-
-
 	def update_feed(feedmodel)
 		parser = model_to_parser(feedmodel)
 		Feedzirra::Feed.update(parser)

@@ -10,7 +10,7 @@ class FeedsController < ApplicationController
 	end
 
 	def create
-		@feed = create_feed(params.require(:feed)[:feed_url])
+		@feed = Feed.create(params.require(:feed).permit(:feed_url))
 		redirect_to feeds_path
 	end
 

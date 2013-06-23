@@ -27,7 +27,7 @@
 		<td><%= feed.url %></td>
 		<td><%= feed.etag %></td>
 		<td><%= feed.last_modified %></td>
-		<td><%= feed.entries.length %></td>
+		<td><%= feed.entries.count %></td>
 		<td><%= link_to '[x]', feed_path(feed), method: :delete %></td>
 	</tr>
 <% end %>
