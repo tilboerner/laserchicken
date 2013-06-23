@@ -1,4 +1,5 @@
 class Entry < ActiveRecord::Base
+  include ActionView::Helpers
   belongs_to :feed
   has_many :user_states
   has_many :subscriptions, through: :feed

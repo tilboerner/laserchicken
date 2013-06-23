@@ -6,6 +6,7 @@ end
 
 def show
 	@subscription = Subscription.where(user: current_user).find(params[:id])
+	@entries = @subscription.feed.entries
 end
 
 def new

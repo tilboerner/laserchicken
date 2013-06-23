@@ -1,15 +1,13 @@
 <a name="<%= entry.id %>" />
 <div class="entry">
-	<h4><%= entry.title %></h4>
-	<dl>
-		<dt>url</dt>
-		<dd><a href="<%= entry.url %>"><%= entry.url %></a></dd>
-		<dt>author</dt>
-		<dd><%= entry.author %></dd>
-		<dt>published</dt>
-		<dd><%= time_ago_in_words entry.published %></dd>
-		<dt>summary</dt>
-		<dd><%= raw entry.summary %></dd>
-	</dl>
-	<%= link_to 'more...', [entry.feed, entry] %>
+	<div class="head">
+		<strong>
+			<%= entry.title %>
+		</strong> -
+			<%= entry.snippet %>
+			<%= time_ago_in_words entry.published %>
+	</div>
+	<div class="body" style="display: none;">
+		<a href="<%= entry.url %>"><%= entry.title %></a>
+	</div>
 </div>
