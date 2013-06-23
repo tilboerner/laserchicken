@@ -1,12 +1,14 @@
 class Subscription < ActiveRecord::Base
   belongs_to :feed
   belongs_to :user
-  has_many :user_states
+  has_many :entries, through: :feed
+  has_many :user_states, through: :entries
 
-  scope :changed, -> { \
-   joins('LEFT OUTER JOIN user_states ON user_states.subscription_id = subscriptions.id') \
-   .where("user_states.seen IS NOT ?", true) \
-  }
+  scope :changed, -> {
+    joins(:entries).
+    joins('LEFT OUTER JOIN user_states ON user_states.entry_id = entries.id').
+    where('user_states.seen IS NOT ?', true).
+    group('subscriptions.id') }
 
   def newcount
   	feed.entries.unseen_by(user).count

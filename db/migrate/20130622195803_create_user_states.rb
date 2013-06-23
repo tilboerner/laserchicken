@@ -3,7 +3,6 @@ class CreateUserStates < ActiveRecord::Migration
     create_table :user_states do |t|
       t.references :entry, index: true
       t.references :user, index: true
-      t.references :subscription, index: true
       t.boolean :seen
       t.boolean :starred
 

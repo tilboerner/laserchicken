@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 20130622195803) do
   create_table "user_states", force: true do |t|
     t.integer  "entry_id"
     t.integer  "user_id"
-    t.integer  "subscription_id"
     t.boolean  "seen"
     t.boolean  "starred"
     t.datetime "created_at"
@@ -59,7 +58,6 @@ ActiveRecord::Schema.define(version: 20130622195803) do
   end
 
   add_index "user_states", ["entry_id"], name: "index_user_states_on_entry_id"
-  add_index "user_states", ["subscription_id"], name: "index_user_states_on_subscription_id"
   add_index "user_states", ["user_id"], name: "index_user_states_on_user_id"
 
   create_table "users", force: true do |t|
