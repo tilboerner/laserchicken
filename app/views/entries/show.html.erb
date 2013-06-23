@@ -1,5 +1,5 @@
 <div class="entry">
-	Feed: <%= link_to @feed.title, feed_path(@feed, anchor: @entry.id) %>
+	Feed: <%= link_to @entry.feed.title, feed_path(@entry.feed, anchor: @entry.id) %>
 	<h4><%= @entry.title =%></h4>
 	<dl>
 		<dt>url</dt>

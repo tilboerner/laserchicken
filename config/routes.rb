@@ -1,23 +1,26 @@
 Laserchicken::Application.routes.draw do
-  get "sessions/new"
-  get "sessions/create"
-  get "sessions/destroy"
-  resources :users
-  resources :sessions, only: [:new, :create, :destroy]
 
+  resources :sessions, only: [:new, :create, :destroy]
   get '/login', to: 'sessions#new'
   get '/logout', to: 'sessions#destroy', via: :delete
 
   resources :subscriptions, only: [:index, :show, :create, :destroy]
   resources :subscriptions do
-    resources :unread, only: [:index, :show, :destroy]
+    resources :entries, only: [:index, :show]
+    resources :entries, only: [:index, :show], path: :unread, unseen: true
   end
 
-  resources :unread, only: [:index, :show, :create, :destroy]
+
+  resources :entries, only: [:index, :show]
+  resources :entries, only: [:index, :show], path: :unread, unseen: true
+
+
+  resources :users
 
   resources :feeds
   resources :feeds do
-    resources :entries
+    resources :entries, only: [:index, :show]
+    resources :entries, only: [:index, :show], path: :unread, unseen: true
   end
 
   get "home/index"

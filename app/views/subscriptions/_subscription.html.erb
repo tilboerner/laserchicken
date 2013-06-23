@@ -1,0 +1,25 @@
+<div id="<%= dom_id subscription %>" class="subscription">
+	<div class="head">
+		<%= subscription.feed.title %>
+		<% if subscription.changed? %>
+			(<%= subscription.newcount %>)
+		<% end %>
+		<%= time_ago_in_words subscription.feed.last_modified %>
+		<%= link_to '[x]', subscription_path(subscription), method: :delete %>
+		<a onclick='toggle("#<%= dom_id subscription %>");'>v</a>
+	</div>
+	<div class="body toggle" style="display: none">
+		<dl>
+			<dt>id</dt>
+			<dd><%= subscription.id %></dd>
+			<dt>url</dt>
+			<dd><%= subscription.feed.url %></dd>
+			<dt>feed-url</dt>
+			<dd><%= subscription.feed.feed_url %></dd>
+			<dt>entries</dt>
+			<dd><%= subscription.feed.entries.count %>(<%= subscription.newcount %>)</dd>
+			<dt>last-modified</dt>
+			<dd><%= time_tag subscription.feed.last_modified %></dd>
+		</dl>
+	</div>
+</div>
