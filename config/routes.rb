@@ -8,7 +8,7 @@ Laserchicken::Application.routes.draw do
 
   concern :serial do
     get 'next', on: :member
-    get 'prev', on: :member
+    get 'previous', on: :member
   end
 
   resources :subscriptions, only: [:index, :show, :create, :destroy]
