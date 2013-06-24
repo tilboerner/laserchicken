@@ -2,11 +2,17 @@ class SubscriptionsController < ApplicationController
 
 def index
 	@subscriptions = Subscription.where(user: current_user)
+	if params[:unseen]
+		@subscriptions = @subscriptions.changed_for(current_user)
+	end
 end
 
 def show
 	@subscription = Subscription.where(user: current_user).find(params[:id])
 	@entries = @subscription.feed.entries
+	if params[:unseen]
+		@entries = @entries.unseen_by(current_user)
+	end
 end
 
 def new

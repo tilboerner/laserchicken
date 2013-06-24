@@ -6,15 +6,20 @@ Laserchicken::Application.routes.draw do
   get '/login', to: 'sessions#new'
   get '/logout', to: 'sessions#destroy', via: :delete
 
+  concern :serial do
+    get 'next', on: :member
+    get 'prev', on: :member
+  end
+
   resources :subscriptions, only: [:index, :show, :create, :destroy]
   resources :subscriptions do
-    resources :entries, only: [:index, :show]
-    resources :entries, only: [:index, :show], path: :unread, unseen: true
+    resources :entries, only: [:index, :show], concerns: :serial
+    resources :entries, only: [:index, :show], path: :unread, unseen: true, concerns: :serial
   end
 
 
-  resources :entries, only: [:index, :show]
-  resources :entries, only: [:index, :show], path: :unread, unseen: true
+  resources :entries, only: [:index, :show], concerns: :serial
+  resources :entries, only: [:index, :show], path: :unread, unseen: true, concerns: :serial
 
   resources :user_states, only: [:show, :update], path: :states
 
@@ -22,7 +27,7 @@ Laserchicken::Application.routes.draw do
 
   resources :feeds
   resources :feeds do
-    resources :entries, only: [:index, :show]
+    resources :entries, only: [:index, :show], concerns: :serial
     resources :entries, only: [:index, :show], path: :unread, unseen: true
   end
 
