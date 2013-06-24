@@ -5,7 +5,7 @@
 			✓
 		<% end %>
 		<strong>
-			<%= link_to entry.title, entry %>
+			<%= link_to entry.title, [@parent, entry] %>
 		</strong> -
 			<%= entry.snippet %>
 			<%= entry.published ? time_ago_in_words(entry.published) : '?' %> ago

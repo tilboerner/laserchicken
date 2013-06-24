@@ -11,7 +11,6 @@ class EntriesController < ApplicationController
   def next
     establish_context
     next_entry = @entries.select('entries.id').where('entries.published < ?', @entry.published).order('published DESC').limit(1).first
-    redirect_to next_entry
     unless params[:unseen]
       redirect_to [@parent, next_entry]
     else
