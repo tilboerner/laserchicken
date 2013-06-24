@@ -14,12 +14,10 @@ Laserchicken::Application.routes.draw do
   resources :subscriptions, only: [:index, :show, :create, :destroy]
   resources :subscriptions do
     resources :entries, only: [:index, :show], concerns: :serial
-    resources :entries, only: [:index, :show], path: :unread, unseen: true, concerns: :serial
   end
 
 
   resources :entries, only: [:index, :show], concerns: :serial
-  resources :entries, only: [:index, :show], path: :unread, unseen: true, concerns: :serial
 
   resources :user_states, only: [:show, :update], path: :states
 
@@ -28,7 +26,6 @@ Laserchicken::Application.routes.draw do
   resources :feeds
   resources :feeds do
     resources :entries, only: [:index, :show], concerns: :serial
-    resources :entries, only: [:index, :show], path: :unread, unseen: true
   end
 
   # get "home/index"
