@@ -4,6 +4,8 @@ class Entry < ActiveRecord::Base
   has_many :user_states
   has_many :subscriptions, through: :feed
 
+  default_scope order('published DESC')
+
   scope :seen_by, -> (user) { joins(:user_states).where(user_states: {user_id: user, seen: true}) }
   scope :unseen_by, -> (user) {
     joins("LEFT OUTER JOIN user_states ON user_states.entry_id = entries.id")\
@@ -25,6 +27,10 @@ class Entry < ActiveRecord::Base
 
   def snippet
     truncate(strip_tags((self.summary or self.content)), length: 80, separator: ' ')
+  end
+
+  def text
+    (self.content or self.summary)
   end
 
 end

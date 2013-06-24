@@ -4,10 +4,10 @@ class Subscription < ActiveRecord::Base
   has_many :entries, through: :feed
   has_many :user_states, through: :entries
 
-  scope :changed, -> {
+  scope :changed_for, -> (user) {
     joins(:entries).
     joins('LEFT OUTER JOIN user_states ON user_states.entry_id = entries.id').
-    where('user_states.seen IS NOT ?', true).
+    where('user_states.seen IS NOT ?', true).where(user_states: {user: user}).
     group('subscriptions.id') }
 
   def newcount

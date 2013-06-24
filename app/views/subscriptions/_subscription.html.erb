@@ -1,11 +1,11 @@
 <div id="<%= dom_id subscription %>" class="subscription">
 	<div class="head">
-		<%= subscription.feed.title %>
+		<%= link_to subscription.feed.title, subscription %>
 		<% if subscription.changed? %>
 			(<%= subscription.newcount %>)
 		<% end %>
 		<%= time_ago_in_words subscription.feed.last_modified %>
-		<%= link_to '[x]', subscription_path(subscription), method: :delete %>
+		<%= link_to '[x]', subscription, method: :delete %>
 		<a onclick='toggle("#<%= dom_id subscription %>");'>v</a>
 	</div>
 	<div class="body toggle" style="display: none">

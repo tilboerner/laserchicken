@@ -1,7 +1,7 @@
 <div class="entry">
 	Feed: <%= link_to @entry.feed.title, feed_path(@entry.feed, anchor: @entry.id) %>
+	Parent: <%= link_to_if @parent.class==Subscription, @title, subscription_entry_path(@parent, @entry) %>
 	<h4><%= @entry.title %></h4>
-
 	<% @user_state = @entry.userstate(current_user) %>
 	<% newstate_word = @user_state.seen ? 'unread' : 'read'; %>
 	<%= render @user_state %>
@@ -18,7 +18,7 @@
 		<dd><%= time_ago_in_words @entry.published %></dd>
 	</dl>
 	<div>
-		<%= @entry.content.html_safe %>
+		<%= @entry.text.html_safe %>
 	</div>
 
 </div>

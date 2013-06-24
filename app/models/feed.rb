@@ -4,9 +4,10 @@ class Feed < ActiveRecord::Base
 
 	include FeedsHelper
 
-	after_save :fetch
+	after_create :fetch
 
 	def fetch
 		update_feed(self)
 	end
+
 end

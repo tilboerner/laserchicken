@@ -1,11 +1,14 @@
 <a name="<%= entry.id %>" />
 <div class="entry">
 	<div class="head">
+		<% if entry.userstate(current_user).seen %>
+			✓
+		<% end %>
 		<strong>
 			<%= link_to entry.title, entry %>
 		</strong> -
 			<%= entry.snippet %>
-			<%= time_ago_in_words entry.published %>
+			<%= entry.published ? time_ago_in_words(entry.published) : '?' %> ago
 	</div>
 	<div class="body" style="display: none;">
 		<a href="<%= entry.url %>"><%= entry.title %></a>
