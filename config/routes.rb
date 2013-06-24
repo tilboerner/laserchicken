@@ -14,6 +14,7 @@ Laserchicken::Application.routes.draw do
   resources :entries, only: [:index, :show]
   resources :entries, only: [:index, :show], path: :unread, unseen: true
 
+  resources :user_states, only: [:show, :update], path: :states
 
   resources :users
 

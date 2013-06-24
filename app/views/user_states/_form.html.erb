@@ -1,0 +1,10 @@
+<% only_show ||= false %>
+<%= form_for @user_state, url: user_state_path(@user_state.entry.id) do |f| %>
+	<%= f.label :seen, 'Read' %>
+	<%= f.check_box :seen, disabled: only_show %>
+	<%= f.label :starred %>
+	<%= f.check_box :starred, disabled: only_show %>
+	<% unless only_show %>
+		<%= f.submit :ok %>
+	<% end %>
+<% end %>

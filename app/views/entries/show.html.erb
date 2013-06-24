@@ -1,6 +1,14 @@
 <div class="entry">
 	Feed: <%= link_to @entry.feed.title, feed_path(@entry.feed, anchor: @entry.id) %>
-	<h4><%= @entry.title =%></h4>
+	<h4><%= @entry.title %></h4>
+
+	<% @user_state = @entry.userstate(current_user) %>
+	<% newstate_word = @user_state.seen ? 'unread' : 'read'; %>
+	<%= render @user_state %>
+	<%= link_to "mark as #{newstate_word}",
+		user_state_path(@entry.id, user_state: {seen: !@user_state.seen}),
+		method: :put %>
+
 	<dl>
 		<dt>url</dt>
 		<dd><a href="<%= @entry.url %>"><%= @entry.url %></a></dd>
