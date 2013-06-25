@@ -1,4 +1,7 @@
+<% show_complete = false unless defined? show_complete %>
+<a name="<%= dom_id subscription %>"></a>
 <section class="subscription preview <%= ' unread' if subscription.changed? %>">
+<% unless show_complete %>
 	<div class="preview">
 		<div class="actions">
 			<%= link_to '☒', subscription, method: :delete %>
@@ -17,18 +20,11 @@
 			<%= time_ago_in_words subscription.feed.last_modified %>
 		</div>
 	</div>
-	<div class="body toggle" style="display: none">
-		<dl>
-			<dt>id</dt>
-			<dd><%= subscription.id %></dd>
-			<dt>url</dt>
-			<dd><%= subscription.feed.url %></dd>
-			<dt>feed-url</dt>
-			<dd><%= subscription.feed.feed_url %></dd>
-			<dt>entries</dt>
-			<dd><%= subscription.feed.entries.count %>(<%= subscription.newcount %>)</dd>
-			<dt>last-modified</dt>
-			<dd><%= time_tag subscription.feed.last_modified %></dd>
-		</dl>
-	</div>
+<% else %>
+	<header>
+	</header>
+
+	<%= render @entries %>
+<% end %>
+
 </section>

@@ -1,25 +1,4 @@
 <% provide(:title, @subscription.feed.title) %>
 <% provide(:subtitle, link_to(@subscription.feed.url)) %>
-<section>
-	<header>
-		<dl style="display: none;">
-			<dt>title</dt>
-			<dd></dd>
-			<dt>url</dt>
-			<dd><a href="<%= @subscription.feed.url %>"><%= @subscription.feed.url %></a></dd>
-			<dt>feed-url</dt>
-			<dd><a href="<%= @subscription.feed.feed_url %>"><%= @subscription.feed.feed_url %></a></dd>
-			<dt>etag</dt>
-			<dd><%= @subscription.feed.etag %></dd>
-			<dt># entries</dt>
-			<dd><%= @subscription.feed.entries.length %></dd>
-			<dt>last-modified</dt>
-			<dd><%= time_ago_in_words @subscription.feed.last_modified %></dd>
-			<dt>last-updated</dt>
-			<dd><%= time_ago_in_words @subscription.feed.updated_at %></dd>
-		</dl>
-</header>
 
-
-<%= render @entries %>
-</section>
+<%= render @subscription, show_complete: true %>
