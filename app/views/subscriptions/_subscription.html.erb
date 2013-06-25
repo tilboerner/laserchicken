@@ -1,12 +1,21 @@
-<div id="<%= dom_id subscription %>" class="subscription">
-	<div class="head">
-		<%= link_to subscription.feed.title, subscription %>
-		<% if subscription.changed? %>
-			(<%= subscription.newcount %>)
-		<% end %>
-		<%= time_ago_in_words subscription.feed.last_modified %>
-		<%= link_to '[x]', subscription, method: :delete %>
-		<a onclick='toggle("#<%= dom_id subscription %>");'>v</a>
+<section class="subscription preview <%= ' unread' if subscription.changed? %>">
+	<div class="preview">
+		<div class="actions">
+			<%= link_to '☒', subscription, method: :delete %>
+		</div>
+		<div class="data">
+			<span class="title">
+				<%= link_to subscription.feed.title, subscription %>
+				<% if subscription.changed? %>
+					(<%= subscription.newcount %>)
+				<% end %>
+			</span>
+			<span class="snippet">
+			</span>
+		</div>
+		<div class="time">
+			<%= time_ago_in_words subscription.feed.last_modified %>
+		</div>
 	</div>
 	<div class="body toggle" style="display: none">
 		<dl>
@@ -22,4 +31,4 @@
 			<dd><%= time_tag subscription.feed.last_modified %></dd>
 		</dl>
 	</div>
-</div>
+</section>

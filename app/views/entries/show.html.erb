@@ -1,24 +1,20 @@
-<div class="entry">
-	Feed: <%= link_to @entry.feed.title, feed_path(@entry.feed, anchor: @entry.id) %>
-	Parent: <%= link_to_if @parent.class==Subscription, @title, subscription_entry_path(@parent, @entry) %>
-	<h4><%= @entry.title %></h4>
-	<% @user_state = @entry.userstate(current_user) %>
-	<% newstate_word = @user_state.seen ? 'unread' : 'read'; %>
-	<%= render @user_state %>
-	<%= link_to "mark as #{newstate_word}",
-		user_state_path(@entry.id, user_state: {seen: !@user_state.seen}),
-		method: :put %>
-
-	<dl>
-		<dt>url</dt>
-		<dd><a href="<%= @entry.url %>"><%= @entry.url %></a></dd>
-		<dt>author</dt>
-		<dd><%= @entry.author %></dd>
-		<dt>published</dt>
-		<dd><%= time_ago_in_words @entry.published %></dd>
-	</dl>
-	<div>
+<% provide(:title, @entry.title) %>
+<% provide(:subtitle, link_to_if(@parent, @title, @parent)) %>
+<% @user_state = @entry.userstate(current_user) %>
+<% provide(:form, render(@entry.userstate(current_user))) %>
+<article class="entry">
+	<header>
+		<%= @entry.author %>
+		<% if @entry.published %>
+			@ <%= time_tag(@entry.published) %>
+		<% end %>
+		<%= link_to('(web)', @entry.url) %>
+	</header>
+	<div class ="text">
 		<%= @entry.text.html_safe %>
 	</div>
-
-</div>
+	<footer>
+		<%= render 'user_states/form' %>
+		<%= link_to('(web)', @entry.url) %>
+	</footer>
+</article>

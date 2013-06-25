@@ -21,14 +21,23 @@
         <nav>
             <%= link_to "subscriptions", subscriptions_path %>
         </nav>
+
+        <div id="notifications">
+            <% flash.each do |key, value| %>
+                    <div class="alert alert-<%= key %>"><%= value %></div>
+            <% end %>
+        </div>
+
+        <div id="title">
+            <h1><%= yield(:title) %></h1>
+            <h2><%= yield(:subtitle) %></h2>
+        </div>
+
+        <div id="form">
+            <%= yield(:form) %>
+        </div>
     </header>
 
-
-    <div id="notifications">
-        <% flash.each do |key, value| %>
-                <div class="alert alert-<%= key %>"><%= value %></div>
-        <% end %>
-    </div>
 
 
     <div id="content">
@@ -37,9 +46,9 @@
 
 
     <% if Rails.env.development? %>
-    <div class="debug">
+    <section class="debug">
         <%= debug(params) if Rails.env.development? %>
-    </div>
+    </section>
     <% end %>
 </div>
 </body>

@@ -1,7 +1,7 @@
+<% provide(:title, @subscription.feed.title) %>
+<% provide(:subtitle, link_to(@subscription.feed.url)) %>
 <section>
 	<header>
-		<h2><%= @subscription.feed.title %></h2>
-		<h3><a href="<%= @subscription.feed.url %>"><%= @subscription.feed.url %></a></h3>
 		<dl style="display: none;">
 			<dt>title</dt>
 			<dd></dd>

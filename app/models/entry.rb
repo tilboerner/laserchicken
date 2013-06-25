@@ -33,4 +33,12 @@ class Entry < ActiveRecord::Base
     (self.content or self.summary)
   end
 
+  def timestr
+    if self.published
+      time_ago_in_words(self.published).sub('about', '~').sub(/ hours?/, 'h')
+    else
+      ''
+    end
+  end
+
 end

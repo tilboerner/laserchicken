@@ -1,15 +1,6 @@
-<h2>Subscriptions</h2>
+<% provide(:title, 'Subscriptions') %>
 
-<script>
-var toggle = function(id) {
-	$(id).find('.toggle').toggle();
-}
-</script>
-
-<%= form_for :subscription do |f| %>
-	<%= f.text_field :feed_url %>
-	<%= f.submit 'subscribe' %>
-<% end %>
+<%= render 'form' %>
 
 <hr />
 
