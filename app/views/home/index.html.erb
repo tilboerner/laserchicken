@@ -1,2 +1,5 @@
-<%= link_to "Known Feeds", feeds_path %>
-<%= link_to "Subscriptions", subscriptions_path %>
+<% provide(:form, render('subscriptions/form')) %>
+<% @entries  = Entry.subscribed_by(current_user) %>
+<section>
+    <%= render @entries %>
+</section>

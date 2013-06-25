@@ -1,20 +1,4 @@
 <% provide(:title, @entry.title) %>
-<% provide(:subtitle, link_to_if(@parent, @title, @parent)) %>
-<% @user_state = @entry.userstate(current_user) %>
-<% provide(:form, render(@entry.userstate(current_user))) %>
-<article class="entry">
-	<header>
-		<%= @entry.author %>
-		<% if @entry.published %>
-			@ <%= time_tag(@entry.published) %>
-		<% end %>
-		<%= link_to('(web)', @entry.url) %>
-	</header>
-	<div class ="text">
-		<%= @entry.text.html_safe %>
-	</div>
-	<footer>
-		<%= render 'user_states/form' %>
-		<%= link_to('(web)', @entry.url) %>
-	</footer>
-</article>
+<% provide(:subtitle, link_to(@title, @parent || '/')) %>
+
+<%= render @entry, show_complete: true %>

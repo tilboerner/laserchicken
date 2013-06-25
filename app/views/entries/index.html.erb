@@ -1,3 +1,4 @@
-<h2><%= @title %></h2>
-
+<% provide(:title, @title) %>
+<% provide(:subtitle, link_to('subscriptions', subscriptions_path)) %>
+<% provide(:form, render('subscriptions/form')) %>
 <%= render @entries %>

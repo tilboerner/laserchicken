@@ -1,5 +1,8 @@
-<a name="<%= entry.id %>" />
-<article class="entry preview <%= ' unread' unless entry.userstate(current_user).seen %>">
+<% show_complete = false unless defined? show_complete %>
+<% @user_state = entry.userstate(current_user) %>
+<a name="<%= dom_id entry %>"></a>
+<article class="entry <%= ' unread' unless @user_state.seen %>">
+<% unless show_complete %>
 	<div class="preview">
 		<div class="actions">
 			☆
@@ -22,9 +25,24 @@
 				<%= entry.feed.title %>
 			</div>
 		<% end %>
-		<hr/>
 	</div>
-	<div class="body" style="display: none;">
-		<a href="<%= entry.url %>"><%= entry.title %></a>
+<% else %>
+	<header>
+		<%= render @user_state %>
+		<span class="title">
+			<%= @entry.author %>
+			<% if @entry.published %>
+				@ <%= time_tag(@entry.published) %>
+			<% end %>
+		</span>
+		<%= link_to('(web)', @entry.url) %>
+	</header>
+	<div class ="text">
+		<%= @entry.text.html_safe %>
 	</div>
+	<footer>
+		<%= render @user_state %>
+		<%= link_to('(web)', @entry.url) %>
+	</footer>
+<% end %>
 </article>

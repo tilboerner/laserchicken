@@ -19,7 +19,7 @@
             <% end %>
         </div>
         <nav>
-            <%= link_to "subscriptions", subscriptions_path %>
+            <%= link_to_if current_user, "subscriptions", subscriptions_path %>
         </nav>
 
         <div id="notifications">
@@ -46,6 +46,7 @@
 
 
     <% if Rails.env.development? %>
+    <hr />
     <section class="debug">
         <%= debug(params) if Rails.env.development? %>
     </section>

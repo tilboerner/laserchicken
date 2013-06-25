@@ -1,11 +1,1 @@
-<%= form_for(:session, url: sessions_path) do |f| %>
-
-	<%= f.label :name %>
-	<%= f.text_field :name %>
-
-	<%= f.label :password %>
-	<%= f.password_field :password %>
-
-	<%= f.submit "Login" %>
-
-<% end %>
+<% provide(:form, render('form')) %>

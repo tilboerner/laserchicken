@@ -1,0 +1,12 @@
+<%= form_for(:session, url: sessions_path) do |f| %>
+    <fieldset>
+        <legend>Login</legend>
+        <%= f.text_field :name, placeholder: 'username' %>
+        <%= f.password_field :password, placeholder: 'password' %>
+
+        <span class="help-block"></span>
+
+        <%= f.button "Login", class: 'btn' %>
+    </fieldset>
+
+<% end %>

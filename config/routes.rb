@@ -2,6 +2,8 @@ Laserchicken::Application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+  root 'entries#index'
+
   resources :sessions, only: [:new, :create, :destroy]
   get '/login', to: 'sessions#new'
   get '/logout', to: 'sessions#destroy', via: :delete
@@ -28,8 +30,6 @@ Laserchicken::Application.routes.draw do
     resources :entries, only: [:index, :show], concerns: :serial
   end
 
-  # get "home/index"
-  root 'home#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
