@@ -1,0 +1,168 @@
+@import "bootstrap";
+
+
+$main_foreground: #000;
+$main_background: #fff;
+$minor_foreground: #888;
+$minor_background: #eee;
+
+$actionable: #0088cc;
+
+* {
+	// ★ | ☆ | ☐ | ☑ | ✅ | ✔ | ✓ | 
+	// border: 1px dashed gray;
+}
+
+@mixin tablebase {
+	display: table;
+}
+
+@mixin tablerow {
+	display: table-row;
+}
+
+@mixin tablecell {
+	display: table-cell;
+}
+
+@mixin centering {
+	text-align: center;
+}
+
+@mixin minor {
+	background-color: $main_background;
+	color: $minor_foreground;
+}
+
+body {
+	background-color: gray;
+}
+
+#all {
+	background-color: white;
+	border: 1px solid black;
+	margin: auto;
+	min-width: 320px;
+	max-width: 800px;
+}
+
+#all > header {
+	@include tablebase;
+	background-color: black;
+	color: gray;
+	margin: 0;
+	width: 100%;
+
+	.banner, nav {
+		@include tablerow;
+		@include centering;
+	}
+}
+
+#logo {
+	float: left;
+	color: $red;
+	font-weight: bold;
+	font-size: 1.7em;
+	font-variant: small-caps;
+
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+#content {
+	padding: 10px;
+}
+
+.user {
+	float: right;
+}
+
+nav {
+	a {
+		color: white;
+		text-decoration: none;
+	}
+}
+
+section {
+
+	h2 {
+		font-size: 2em;
+		margin: 0;
+	}
+
+	h3 {
+		font-size: 1em;
+		line-height: 1;
+		margin: 0;
+
+	}
+
+	header {
+		// text-align: center;
+		margin-bottom: 15px;
+	}
+
+}
+
+article {
+	font-size: 0.8em;
+
+	a {
+		color: $main_foreground;
+		text-decoration: none;
+	}
+
+	hr {
+		margin: 0;
+		padding: 0;
+	}
+
+	header {
+		display: inline-block;
+		margin: 0;
+		padding: 0;
+		vertical-align: top;
+		width: 100%;
+		min-height: 2em;
+		div {
+			display: inline-block;
+			vertical-align: top;
+		}
+	}
+
+	.actions, .snippet, .time {
+		@include minor;
+	}
+
+	.preview {
+		width: 83%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.time {
+		background-color: $minor_background;
+		overflow: hidden;
+		padding-right: 5px;
+		padding-left: 5px;
+		text-align: right;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		width: 12%;
+	}
+
+	.parent {
+		padding-left: 10px;
+	}
+
+	&.unread {
+
+		.title {
+			font-weight: bold;
+		}
+	}
+}

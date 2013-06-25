@@ -1,25 +1,46 @@
+<% appname = Rails.application.class.parent_name %>
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Laserchicken</title>
+  <title><%= appname %></title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<h1>I am Laserchicken!</h1>
-<% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
-<% end %>
+<div id="all">
+    <header>
+        <div class="banner">
+            <%= link_to "I am #{appname}!", root_path, id: "logo" %>
 
-<% if signed_in? %>
-	<div>Hi, <%= current_user.name %>! <%= link_to "logout", logout_path %></div>
-<% end %>
+            <% if signed_in? %>
+                <div class="user">Hi, <%= current_user.name %>! <%= link_to "logout", logout_path %></div>
+            <% end %>
+        </div>
+        <nav>
+            <%= link_to "subscriptions", subscriptions_path %>
+        </nav>
+    </header>
 
-<%= yield %>
 
-<%= debug(params) if Rails.env.development? %>
+    <div id="notifications">
+        <% flash.each do |key, value| %>
+                <div class="alert alert-<%= key %>"><%= value %></div>
+        <% end %>
+    </div>
 
+
+    <div id="content">
+    <%= yield %>
+    </div>
+
+
+    <% if Rails.env.development? %>
+    <div class="debug">
+        <%= debug(params) if Rails.env.development? %>
+    </div>
+    <% end %>
+</div>
 </body>
 </html>

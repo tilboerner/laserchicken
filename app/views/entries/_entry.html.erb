@@ -1,16 +1,29 @@
 <a name="<%= entry.id %>" />
-<div class="entry">
-	<div class="head">
-		<% if entry.userstate(current_user).seen %>
-			✓
+<article class="entry<%= ' unread' unless entry.userstate(current_user).seen %>">
+	<header>
+		<div class="actions">
+			<%= read_unread_link(entry) %>
+		</div>
+		<div class="preview">
+			<span class="title">
+				<%= link_to entry.title, [@parent, entry] %>
+			</span>
+			<span class="snippet">
+				-
+				<%= entry.snippet %>
+			</span>
+		</div>
+		<div class="time">
+			<%= entry.published ? time_ago_in_words(entry.published).sub('about', '~') : '' %>
+		</div>
+		<% unless @parent %>
+			<div class="parent">
+				<%= entry.feed.title %>
+			</div>
 		<% end %>
-		<strong>
-			<%= link_to entry.title, [@parent, entry] %>
-		</strong> -
-			<%= entry.snippet %>
-			<%= entry.published ? time_ago_in_words(entry.published) : '?' %> ago
-	</div>
+	</header>
 	<div class="body" style="display: none;">
 		<a href="<%= entry.url %>"><%= entry.title %></a>
 	</div>
-</div>
+	<hr />
+</article>

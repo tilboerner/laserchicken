@@ -26,7 +26,7 @@ class Entry < ActiveRecord::Base
   end
 
   def snippet
-    truncate(strip_tags((self.summary or self.content)), length: 80, separator: ' ')
+    truncate(strip_tags((self.summary or self.content)), length: 200, separator: ' ')
   end
 
   def text
