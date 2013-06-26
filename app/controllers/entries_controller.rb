@@ -18,7 +18,7 @@ class EntriesController < ApplicationController
     end
   end
 
-  def prev
+  def previous
     establish_context
     next_entry = @entries.select('entries.id').where('entries.published > ?', @entry.published).order('published ASC').limit(1).first
     unless params[:unseen]

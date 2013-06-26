@@ -1,13 +1,13 @@
 <% show_complete = false unless defined? show_complete %>
 <a name="<%= dom_id subscription %>"></a>
-<section class="subscription preview <%= ' unread' if subscription.changed? %>">
+<section class="subscription<%= ' changed' if subscription.changed? %>">
 <% unless show_complete %>
 	<div class="preview">
 		<div class="actions">
 			<%= link_to '☒', subscription, method: :delete %>
 		</div>
 		<div class="data">
-			<span class="title">
+			<span class="title title-subscription">
 				<%= link_to subscription.feed.title, subscription %>
 				<% if subscription.changed? %>
 					(<%= subscription.newcount %>)
@@ -23,7 +23,6 @@
 <% else %>
 	<header>
 	</header>
-
 	<%= render @entries %>
 <% end %>
 

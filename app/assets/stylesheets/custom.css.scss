@@ -42,57 +42,82 @@ body {
 	margin: auto;
 	min-width: 320px;
 	max-width: 800px;
-}
 
-#all > header {
-	@include tablebase;
-	margin: 0;
-	width: 100%;
+	> header, > div {
+		width: 98%;
+		margin: 1%;
+	}
 
-	.banner, nav {
+	> .banner {
 		background-color: black;
 		color: gray;
-		@include tablerow;
-		@include centering;
+		margin: 0;
+		width: 100%;
 	}
+
+	> header {
+		@include tablebase;
+
+		text-align: center;
+		vertical-align: middle;
+
+		.title, nav {
+			@include tablecell;
+		}
+
+		.title {
+			h1 {
+				font-size: 2em;
+				line-height: 1;
+				margin: 0;
+				padding: 0;
+			}
+
+			h2 {
+				font-size: 1.2em;
+				font-weight: normal;
+				line-height: 1;
+				margin: 0;
+				padding: 0;
+			}
+		}
+
+		nav {
+			margin: auto;
+			width: 15%;
+
+			a {
+				color: $minor_foreground;
+				font-size: 1.5em;
+				font-weight: bold;
+			}
+		}
+	}
+
 }
 
 #logo {
-	float: left;
-	color: $red;
-	font-weight: bold;
-	font-size: 1.7em;
-	font-variant: small-caps;
 
-	&:hover {
-		text-decoration: none;
-	}
+		color: $red;
+		font-weight: bold;
+		font-size: 1.7em;
+		font-variant: small-caps;
+
+		&:hover {
+			text-decoration: none;
+		}
 }
+
+.user {
+	float: right;
+}
+
 
 #content {
+	padding-top: 10px;
 	text-align: center;
-	padding: 10px;
 }
 
-#title {
-	padding: 10px;
-	text-align: center;
-
-	h1 {
-		font-size: 2em;
-		line-height: 1;
-		margin: 0;
-		padding: 0;
-	}
-
-	h2 {
-		font-size: 1.2em;
-		font-weight: normal;
-		line-height: 1;
-		margin: 0;
-		padding: 0;
-	}
-}
 
 #form {
 
@@ -104,38 +129,9 @@ body {
 		margin: auto;
 		max-width: 400px;
 		padding: 20px;
-		// text-align: left;
 	}
 
 }
-
-.user {
-	float: right;
-}
-
-nav {
-	a {
-		color: white;
-		text-decoration: none;
-	}
-}
-
-section {
-
-	h2 {
-		font-size: 2em;
-		margin: 0;
-	}
-
-	h3 {
-		font-size: 1em;
-		line-height: 1;
-		margin: 0;
-
-	}
-
-}
-
 
 .preview {
 
@@ -188,15 +184,15 @@ section {
 	}
 }
 
-.unread {
-
-	.title {
-		font-weight: bold;
-	}
-}
 
 section {
 	text-align: left;
+		&.changed {
+		.title-subscription {
+			font-weight: bold;
+		}
+	}
+
 }
 
 
@@ -228,6 +224,13 @@ article {
 		clear: both;
 		text-align: right;
 	}
+
+	&.unread {
+		.title-entry {
+			font-weight: bold;
+		}
+	}
+
 }
 .debug_dump {
 	margin: 20px;

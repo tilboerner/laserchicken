@@ -1,7 +1,7 @@
 <% show_complete = false unless defined? show_complete %>
 <% @user_state = entry.userstate(current_user) %>
 <a name="<%= dom_id entry %>"></a>
-<article class="entry <%= ' unread' unless @user_state.seen %>">
+<article class="entry<%= ' unread' unless @user_state.seen %>">
 <% unless show_complete %>
 	<div class="preview">
 		<div class="actions">
@@ -9,7 +9,7 @@
 			<%= read_unread_link(entry) %>
 		</div>
 		<div class="data">
-			<span class="title">
+			<span class="title title-entry">
 				<%= link_to entry.title, [@parent, entry] %>
 			</span>
 			<span class="snippet">
