@@ -15,9 +15,9 @@ Laserchicken::Application.routes.draw do
 
 
   concern :entry_container do
-    resources :entries, only: :index
+    resources :entries, only: [:index, :show]
   end
-  resources :entries, only: :show, concerns: [:serial]
+  resources :entries, only: [:index, :show], concerns: [:serial]
 
 
   resources :subscriptions, only: [:index, :show, :create, :destroy], concerns: [:serial, :entry_container]
