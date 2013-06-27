@@ -13,22 +13,20 @@ Laserchicken::Application.routes.draw do
     get 'previous', on: :member
   end
 
-  resources :subscriptions, only: [:index, :show, :create, :destroy]
-  resources :subscriptions do
-    resources :entries, only: [:index, :show], concerns: :serial
+
+  concern :entry_container do
+    resources :entries, only: :index
   end
+  resources :entries, only: :show, concerns: [:serial]
 
 
-  resources :entries, only: [:index, :show], concerns: :serial
+  resources :subscriptions, only: [:index, :show, :create, :destroy], concerns: [:serial, :entry_container]
 
   resources :user_states, only: [:show, :update], path: :states
 
   resources :users
 
-  resources :feeds
-  resources :feeds do
-    resources :entries, only: [:index, :show], concerns: :serial
-  end
+  resources :feeds, concerns: :entry_container
 
 
   # Example of regular route:
