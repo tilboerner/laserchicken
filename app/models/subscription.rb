@@ -4,7 +4,7 @@ class Subscription < ActiveRecord::Base
   has_many :entries, through: :feed
   has_many :user_states, through: :entries
 
-  default_scope joins(:feed).order('last_modified DESC')
+  default_scope joins(:feed).order('feeds.last_modified DESC')
 
   scope :changed_for, -> (user) {
     joins(:entries).

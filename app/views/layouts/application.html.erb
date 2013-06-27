@@ -19,17 +19,20 @@
     </div>
 
     <header>
-        <nav>
-            <%= yield(:previous) %>
-        </nav>
         <div class="title">
             <h1><%= yield(:title) %></h1>
             <h2><%= yield(:subtitle) %></h2>
         </div>
-        <nav>
-            <%= yield(:next) %>
-        </nav>
     </header>
+
+    <nav>
+        <div class='nav-left'>
+            <%= yield(:previous) %>
+        </div>
+        <div class='nav-right'>
+            <%= yield(:next) %>
+        </div>
+    </nav>
 
     <div id="notifications">
         <% flash.each do |key, value| %>
@@ -55,6 +58,10 @@
         <%= debug(params) if Rails.env.development? %>
     </section>
     <% end %>
+
+    <footer>
+
+    </footer>
 
 </div>
 </body>

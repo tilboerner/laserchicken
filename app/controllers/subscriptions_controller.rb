@@ -29,6 +29,8 @@ end
 def destroy
 	subscription = Subscription.find(params[:id])
 	subscription.destroy
+	redirect_to :back
+rescue ActionController::RedirectBackError
 	redirect_to subscriptions_path
 end
 

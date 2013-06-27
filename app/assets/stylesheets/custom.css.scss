@@ -56,44 +56,37 @@ body {
 	}
 
 	> header {
-		@include tablebase;
 
 		text-align: center;
 		vertical-align: middle;
 
-		.title, nav {
-			@include tablecell;
+		h1 {
+			font-size: 2em;
+			line-height: 1;
+			margin: 0;
+			padding: 0;
 		}
 
-		.title {
-			h1 {
-				font-size: 2em;
-				line-height: 1;
-				margin: 0;
-				padding: 0;
-			}
-
-			h2 {
-				font-size: 1.2em;
-				font-weight: normal;
-				line-height: 1;
-				margin: 0;
-				padding: 0;
-			}
+		h2 {
+			font-size: 1.2em;
+			font-weight: normal;
+			line-height: 1;
+			margin: 0;
+			padding: 0;
 		}
 
-		nav {
-			margin: auto;
-			width: 15%;
-
-			a {
-				color: $minor_foreground;
-				font-size: 1.5em;
-				font-weight: bold;
-			}
-		}
 	}
 
+	nav {
+
+		margin: auto;
+		text-align: center;
+
+		div {
+			display: inline;
+		}
+
+	}
 }
 
 #logo {
