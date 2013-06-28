@@ -1,0 +1,30 @@
+<%= content_tag 'a', nil, name: dom_id(feed) %>
+<%= content_tag 'section', feed, class: "feed", id: dom_id(feed) do %>
+    <div class="preview">
+        <div class="actions">
+            <%= link_to 'x', feed, method: :delete, class: 'btn btn-mini', data: {confirm: 'You sure? All associated subscriptions and stars will be destroyed.'} %>
+        </div>
+        <div class="state">
+        </div>
+        <div class="data">
+            <% count = feed.subscriptions.count %>
+            <span class="badge<%= ' badge-success' if count > 0 %>"> &#9786; <%= count %></span>
+            <% count = feed.entries.starred.count %>
+            <span class="badge<%= ' badge-success' if count > 0 %>"> ★ <%= count %></span>
+            <% if feed.valid? %>
+                <span class="badge badge-success"> valid | ✔</span>
+            <% else %>
+                <span class="badge badge-warning"> invalid | ✘</span>
+            <% end %>
+            <span class="title feed-title"><%= link_to (feed.title or feed.url), feed.url %></span>
+            <span>(<%= feed.entries.count %> entries)</span>
+            <span><%= content_tag 'a', '(web)', href: feed.feed_url %></span>
+        </div>
+        <div class="time">
+            <% if feed.last_modified %>
+                <%= time_tag feed.last_modified, time_ago_in_words(feed.last_modified) %>
+            <% end %>
+        </div>
+    </div>
+<% end %>
+
