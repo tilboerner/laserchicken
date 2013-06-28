@@ -1,5 +1,15 @@
+class FeedValidator < ActiveModel::EachValidator
+  def validate_each(record, attribute, value)
+    if [nil, 0].include? Feedzirra::Feed.fetch_and_parse(value)
+      record.errors[attribute] << (options[:message] || "is not a recognized XML feed")
+    end
+  end
+end
+
 class Feed < ActiveRecord::Base
 	include FeedsHelper
+
+  validates :feed_url, presence: true, feed: true
 
   has_many :entries, dependent: :destroy
   has_many :subscriptions, dependent: :destroy

@@ -21,9 +21,12 @@ end
 
 def create
 	url = params.require(:subscription).permit(:feed_url)
-	feed = Feed.find_or_create_by(url)
+	feed = Feed.find_or_create_by!(url)
 	subscription = Subscription.find_or_create_by(user: current_user, feed: feed)
 	redirect_to subscription
+rescue ActiveRecord::RecordInvalid
+	flash[:error] =  "Not a valid feed: #{url[:feed_url]}"
+	redirect_to :back
 end
 
 def destroy

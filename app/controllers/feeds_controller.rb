@@ -11,8 +11,11 @@ class FeedsController < ApplicationController
 	end
 
 	def create
-		@feed = Feed.create(params.require(:feed).permit(:feed_url))
+		@feed = Feed.create!(params.require(:feed).permit(:feed_url))
 		redirect_to feeds_path
+	rescue ActiveRecord::RecordInvalid
+		flash[:error] = "Not a valid feed: #{params[:feed][:feed_url]}"
+		redirect_to :back
 	end
 
 
