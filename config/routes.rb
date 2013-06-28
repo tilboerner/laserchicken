@@ -26,7 +26,10 @@ Laserchicken::Application.routes.draw do
 
   resources :users
 
-  resources :feeds, concerns: :entry_container
+  resources :feeds, concerns: :entry_container do
+    get :refresh_all, on: :collection
+    get :refresh, on: :member
+  end
 
 
   # Example of regular route:

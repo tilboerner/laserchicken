@@ -8,7 +8,7 @@ $minor_background: #eee;
 
 $actionable: #0088cc;
 
-	// ★ | ☆ | ☐ | ☑ | ✅ | ✔ | ✓ | ☒ ✗ ✘
+	// ★ | ☆ | ☐ | ☑ | ✅ | ✔ | ✓ | ☒ ✗ ✘ | "↶", "↷", "↺ ", "↻"
 	// border: 1px dashed gray;
 
 @mixin tablebase {
@@ -137,24 +137,13 @@ body {
 		vertical-align: top;
 	}
 
-	a {
-		color: $main_foreground;
-		text-decoration: none;
-	}
-
 	hr {
 		margin: 0;
 		padding: 0;
 	}
 
-	.actions, .snippet, .time {
-		color: $minor_foreground;
-	}
-
-	.actions {
-		a {
-			font-size: 1.2em;
-		}
+	.title a {
+		color: $main_foreground;
 	}
 
 	.data {
@@ -177,6 +166,14 @@ body {
 	}
 }
 
+a.action {
+	@extend .btn;
+	@extend .btn-mini;
+}
+
+a.action-danger {
+	@extend .btn-danger;
+}
 
 section {
 	text-align: left;

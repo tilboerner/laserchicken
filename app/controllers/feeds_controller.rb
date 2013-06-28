@@ -18,11 +18,21 @@ class FeedsController < ApplicationController
 		redirect_to :back
 	end
 
-
 	def destroy
 		@feed = Feed.find(params[:id])
 		@feed.destroy
 		redirect_to feeds_path
+	end
+
+
+	def refresh
+		render json: params
+	end
+
+	def refresh_all
+		call_rake :refresh_active_feeds
+		flash[:notice] = 'updating all active feeds'
+		redirect_to :back
 	end
 
 end

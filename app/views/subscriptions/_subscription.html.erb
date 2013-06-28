@@ -4,7 +4,8 @@
 <% unless show_complete %>
 	<div class="preview">
 		<div class="actions">
-			<%= link_to '☒', subscription, method: :delete %>
+			<%= link_to 'x', subscription, method: :delete,
+				class: 'action', title: 'delete subscription' %>
 		</div>
 		<div class="data">
 			<span class="title title-subscription">
@@ -17,7 +18,9 @@
 			</span>
 		</div>
 		<div class="time">
-			<%= time_ago_in_words subscription.feed.last_modified %>
+			<% if modified = subscription.feed.last_modified %>
+				<%= time_tag modified, time_ago_in_words(modified) %>
+			<% end %>
 		</div>
 	</div>
 <% else %>

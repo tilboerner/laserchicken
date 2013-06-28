@@ -4,6 +4,7 @@ task :update_feed => :environment do
   feed.fetch
 end
 
+desc "Update all subscribed feeds"
 task :update_active_feeds => :environment do
   for feed in Feed.active do
     feed.fetch
