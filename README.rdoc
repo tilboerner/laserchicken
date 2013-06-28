@@ -14,9 +14,11 @@ Growth Status: _incubation_
 * update-ability from external: `rake update_active_feeds`
 * users (subscribe to feeds, read entries)
 * error handling
+* okay looks
 
 === will can:
 
+* import Google Reader [Takeout](https://www.google.com/takeout/) filels
 * pagination
 * users star entries
 * good looks
