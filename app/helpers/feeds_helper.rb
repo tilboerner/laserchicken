@@ -32,8 +32,11 @@ private
 	end
 
 	def create_entries(feedmodel, new_entries)
-		for e in new_entries
-			feedmodel.entries.create e.instance_values.slice 'title', 'url', 'author', 'summary', 'content', 'published'
+		ActiveRecord::Base.transaction do
+			for e in new_entries
+				e.sanitize!
+				feedmodel.entries.create e.instance_values.slice 'title', 'url', 'author', 'summary', 'content', 'published'
+			end
 		end
 	end
 
