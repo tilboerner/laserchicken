@@ -1,3 +1,4 @@
 <% provide(:title, 'Feeds') %>
-<% provide(:form, link_to("↻ all", refresh_all_feeds_path, class: "btn btn-info")) %>
+<% provide(:form, link_to("↻ all", refresh_all_feeds_path,
+		title: 'refresh all active feeds', class: "btn btn-info")) %>
 <%= render @feeds %>

@@ -26,7 +26,9 @@ class FeedsController < ApplicationController
 
 
 	def refresh
-		render json: params
+		call_rake :refesh_feed, feed_id: params[:id].to_i
+		flash[:notice] = 'updating feed'
+		redirect_to :back
 	end
 
 	def refresh_all
