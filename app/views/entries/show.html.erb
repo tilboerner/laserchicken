@@ -1,6 +1,6 @@
 <% provide(:title, @entry.title) %>
 <% provide(:subtitle, link_to(@title, @parent || '/')) %>
-<%= provide(:previous, link_to("<<", "#{request.fullpath}/previous")) %>
-<%= provide(:next, link_to(">>", "#{request.fullpath}/next")) %>
+<%= provide(:previous, link_to("<<", "#{request.fullpath}/previous", rel: 'prev')) %>
+<%= provide(:next, link_to(">>", "#{request.fullpath}/next", rel: 'next')) %>
 
 <%= render @entry, show_complete: true %>
