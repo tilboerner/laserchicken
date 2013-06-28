@@ -5,19 +5,19 @@ Reads your feeds, 'cause Google won't.
 
 == Hatching
 
-Growth Status: _fertilization_
+Growth Status: _incubation_
 
 === can:
 
 * add and update feeds
 * display entries (only summary shown atm)
+* update-ability from external: `rake update_active_feeds`
+* users (subscribe to feeds, read entries)
+* error handling
 
 === will can:
 
-* error handling
 * pagination
-* update-ability from external: POST to /feeds/X/entries
-* users (subscribe to feeds, read entries)
 * users star entries
 * good looks
 
