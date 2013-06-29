@@ -29,12 +29,16 @@ class FeedsController < ApplicationController
 		call_rake :refesh_feed, feed_id: params[:id].to_i
 		flash[:notice] = 'updating feed'
 		redirect_to :back
+	rescue ActionController::RedirectBackError
+		redirect_to feeds_path
 	end
 
 	def refresh_all
 		call_rake :refresh_active_feeds
 		flash[:notice] = 'updating all active feeds'
 		redirect_to :back
+	rescue ActionController::RedirectBackError
+		redirect_to feeds_path
 	end
 
 end
