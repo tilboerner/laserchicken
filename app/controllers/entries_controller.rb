@@ -1,15 +1,15 @@
 class EntriesController < ApplicationController
 
   def index
-    establish_context
+    local_context
   end
 
   def show
-    establish_context
+    local_context
   end
 
   def next
-    establish_context
+    local_context
     next_entry = @entries.select('entries.id').where('entries.published < ?', @entry.published).order('published DESC').limit(1).first
     unless params[:unseen]
       redirect_to [@parent, next_entry]
@@ -19,7 +19,7 @@ class EntriesController < ApplicationController
   end
 
   def previous
-    establish_context
+    local_context
     next_entry = @entries.select('entries.id').where('entries.published > ?', @entry.published).order('published ASC').limit(1).first
     unless params[:unseen]
       redirect_to [@parent, next_entry]
@@ -30,26 +30,8 @@ class EntriesController < ApplicationController
 
 private
 
-  def establish_context
-    if params.include? :id
-      @entry = Entry.find(params[:id])
-    end
-    if params.include? :feed_id
-      feed = Feed.find(params[:feed_id])
-      @title = feed.title
-      @entries = feed.entries
-      @parent = feed
-    elsif params.include? :subscription_id
-      subscription = Subscription.find(params[:subscription_id])
-      feed = subscription.feed
-      @title = feed.title
-      @entries = feed.entries
-      @parent = subscription
-    else
-      @title = 'all'
-      @entries = Entry.subscribed_by(current_user)
-      @parent = nil
-    end
+  def local_context
+    @entries = @parent ? @parent.entries : Entry.subscribed_by(current_user)
     if params[:unseen]
       @entries = @entries.unseen_by(current_user)
     end

@@ -20,4 +20,8 @@ class Subscription < ActiveRecord::Base
   	newcount > 0
   end
 
+  def title
+    feed.title
+  end
+
 end
