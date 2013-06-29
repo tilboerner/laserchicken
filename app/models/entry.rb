@@ -22,7 +22,7 @@ class Entry < ActiveRecord::Base
   end
 
   def userstate(user)
-    self.user_states.find_or_create_by(user: user)
+    self.user_states.find_by(user: user) or UserState.new(user: user, entry: self)
   end
 
   def snippet

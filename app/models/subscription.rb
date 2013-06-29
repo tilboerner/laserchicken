@@ -12,8 +12,11 @@ class Subscription < ActiveRecord::Base
     where('user_states.seen IS NOT ?', true).where(user_states: {user: user}).
     group('subscriptions.id') }
 
+
+  validates_presence_of :feed
+
   def newcount
-  	feed.entries.unseen_by(user).count
+    entries.unseen_by(user).count
   end
 
   def changed?

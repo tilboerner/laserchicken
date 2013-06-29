@@ -1,4 +1,11 @@
 module FeedsHelper
+	require 'nokogiri'
+	require 'opml-reader'
+
+	class OpmlFeed
+		include Opml::Reader
+		attr_accessor :head, :outlines
+	end
 
 	def update_feed(feedmodel)
 		parser = model_to_parser(feedmodel)
