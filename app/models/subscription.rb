@@ -24,4 +24,8 @@ class Subscription < ActiveRecord::Base
     feed.title
   end
 
+  def url
+    feed.url
+  end
+
 end

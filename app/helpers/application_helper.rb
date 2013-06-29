@@ -45,10 +45,10 @@ private
 
   def get_parent_or_nil
     parent_key = params.keys.find { |x| x =~ /_id$/ }
-    @parent_key = parent_key
     return unless parent_key
     parentclass = parent_key.slice(0, parent_key.size - 3).classify.constantize
     parentclass.find(params[parent_key])
+  rescue ActiveRecord::RecordNotFound
   end
 
   def get_model_or_nil
@@ -56,6 +56,7 @@ private
     classname = params[:controller].classify
     modelclass = classname.constantize
     modelclass.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
   end
 
 end

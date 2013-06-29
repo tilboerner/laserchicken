@@ -27,7 +27,7 @@ class FeedsController < ApplicationController
 
 	def refresh
 		call_rake :refesh_feed, feed_id: params[:id].to_i
-		flash[:notice] = 'updating feed'
+		flash[:notice] = 'updating feed ' + (@feed.title or @feed.feed_url)
 		redirect_to :back
 	rescue ActionController::RedirectBackError
 		redirect_to feeds_path

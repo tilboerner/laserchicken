@@ -1,6 +1,6 @@
 <% provide(:title, @entry.title) %>
-<% provide(:subtitle, link_to(@title, @parent || root_path)) %>
-<%= provide(:previous, link_to("<<", "#{request.fullpath}/previous", rel: 'prev')) %>
-<%= provide(:next, link_to(">>", "#{request.fullpath}/next", rel: 'next')) %>
+<% provide(:subtitle, link_to(@entry.feed.url)) %>
+<%= provide(:previous, link_to("<<", [:previous, @parent, @entry], rel: 'prev', class: 'action')) %>
+<%= provide(:next, link_to(">>", [:next, @parent, @entry], rel: 'next', class: 'action')) %>
 
 <%= render @entry, show_complete: true %>

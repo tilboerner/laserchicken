@@ -5,8 +5,7 @@
 <% unless show_complete %>
 	<div class="preview">
 		<div class="actions">
-			<%= star_unstar_link(entry, disabled: true) %>
-			<%= read_unread_link(entry) %>
+			<%= render @user_state %>
 		</div>
 		<div class="data">
 			<span class="title title-entry">
