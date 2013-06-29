@@ -33,6 +33,7 @@ group :doc do
 end
 
 gem 'feedzirra', '~> 0.2.0.rc2'
+gem 'opml-reader', '~> 0.0.1'
 
 gem 'bootstrap-sass', '>= 2.3'
 

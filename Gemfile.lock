@@ -68,6 +68,7 @@ GEM
     minitest (4.7.4)
     multi_json (1.7.3)
     nokogiri (1.5.9)
+    opml-reader (0.0.1)
     polyglot (0.3.3)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -133,6 +134,7 @@ DEPENDENCIES
   feedzirra (~> 0.2.0.rc2)
   jbuilder (~> 1.0.1)
   jquery-rails
+  opml-reader (~> 0.0.1)
   rails (= 4.0.0.rc1)
   sass-rails (~> 4.0.0.rc1)
   sdoc
