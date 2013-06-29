@@ -1,5 +1,5 @@
 <% provide(:title, @entry.title) %>
-<% provide(:subtitle, link_to(@title, @parent || '/')) %>
+<% provide(:subtitle, link_to(@title, @parent || root_path)) %>
 <%= provide(:previous, link_to("<<", "#{request.fullpath}/previous", rel: 'prev')) %>
 <%= provide(:next, link_to(">>", "#{request.fullpath}/next", rel: 'next')) %>
 

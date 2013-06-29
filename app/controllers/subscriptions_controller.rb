@@ -10,7 +10,7 @@ end
 def show
 	@subscription = Subscription.where(user: current_user).find(params[:id])
 	@parent = @subscription
-	@entries = @subscription.feed.entries
+	@entries = @subscription.entries
 	if params[:unseen]
 		@entries = @entries.unseen_by(current_user)
 	end
