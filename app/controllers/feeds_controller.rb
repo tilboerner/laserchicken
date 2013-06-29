@@ -6,7 +6,6 @@ class FeedsController < ApplicationController
 	end
 
 	def show
-		@feed = update_feed(Feed.find(params[:id]))
 		@parent = @feed
 	end
 
