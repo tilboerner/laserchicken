@@ -18,6 +18,21 @@
         <% end %>
     </div>
 
+    <nav>
+        <div class='nav-left'>
+            <%= yield(:previous) %>
+        </div>
+        <div class="nav-center">
+            <ul class="breadcrumb">
+                <% breadcrumbs() %>
+                <%= yield(:breadcrumbs) %>
+            </ul>
+        </div>
+        <div class='nav-right'>
+            <%= yield(:next) %>
+        </div>
+    </nav>
+
     <header>
         <div class="title">
             <h1><%= yield(:title) %></h1>
@@ -25,14 +40,6 @@
         </div>
     </header>
 
-    <nav>
-        <div class='nav-left'>
-            <%= yield(:previous) %>
-        </div>
-        <div class='nav-right'>
-            <%= yield(:next) %>
-        </div>
-    </nav>
 
     <div id="notifications">
         <% flash.each do |key, value| %>

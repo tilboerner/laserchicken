@@ -24,6 +24,23 @@ module ApplicationHelper
   end
 
 
+  def breadcrumbs()
+    crumbs_except_current = @navpath.take(@navpath.size - 1)
+    for (name, target) in crumbs_except_current do
+      content_for :breadcrumbs do
+        content_tag 'li' do
+          link_to(name, target) + content_tag('span', '>', class: 'divider')
+        end
+      end
+    end
+    # current = @navpath.last
+    # content_for :breadcrumbs do
+    #   content_tag 'li' do
+    #     link_to current[0], current[1], class: 'active'
+    #   end
+    # end
+  end
+
 private
 
   def get_parent_or_nil
