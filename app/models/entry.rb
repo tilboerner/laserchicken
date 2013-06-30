@@ -4,6 +4,8 @@ class Entry < ActiveRecord::Base
   has_many :user_states
   has_many :subscriptions, through: :feed
 
+  validates :feed_id, presence: true
+
   default_scope order('published DESC')
 
   scope :seen_by, -> (user) { joins(:user_states).where(user_states: {user_id: user, seen: true}) }

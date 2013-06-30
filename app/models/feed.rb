@@ -9,7 +9,7 @@ end
 class Feed < ActiveRecord::Base
 	include FeedsHelper
 
-  validates :feed_url, presence: true, feed: true
+  validates :feed_url, presence: true, uniqueness: true, feed: true
 
   has_many :entries, dependent: :destroy
   has_many :subscriptions, dependent: :destroy

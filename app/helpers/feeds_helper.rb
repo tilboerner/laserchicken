@@ -12,9 +12,9 @@ module FeedsHelper
 		Feedzirra::Feed.update(parser)
 		if parser.updated?
 			create_entries(feedmodel, parser.new_entries)
-			updatable_attributes = parser.instance_values.slice('title', 'url', 'feed_url', 'etag', 'last_modified')
+			updatable_attributes = parser.instance_values.slice('title', 'url', 'etag', 'last_modified')
 			updatable_attributes.each do |name, value|
-				feedmodel.update_attribute(name, value)		# skip feed validation, as it would try to fetch the feed again
+				feedmodel.update_attribute(name, value)		# skip validation (!!!), which would http-get the feed again
 			end
 		else
 			feedmodel.touch

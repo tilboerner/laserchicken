@@ -14,6 +14,7 @@ class Subscription < ActiveRecord::Base
 
 
   validates_presence_of :feed
+  validates_presence_of :user
 
   def newcount
     entries.unseen_by(user).count

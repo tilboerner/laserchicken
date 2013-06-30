@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130622195803) do
+ActiveRecord::Schema.define(version: 20130630121821) do
 
   create_table "entries", force: true do |t|
     t.string   "title"
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 20130622195803) do
     t.datetime "updated_at"
   end
 
+  add_index "feeds", ["feed_url"], name: "index_feeds_on_feed_url", unique: true
+
   create_table "subscriptions", force: true do |t|
     t.integer  "user_id"
     t.integer  "feed_id"
@@ -46,7 +48,6 @@ ActiveRecord::Schema.define(version: 20130622195803) do
 
   add_index "subscriptions", ["feed_id"], name: "index_subscriptions_on_feed_id"
   add_index "subscriptions", ["user_id", "feed_id"], name: "index_subscriptions_on_user_id_and_feed_id", unique: true
-  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id"
 
   create_table "user_states", force: true do |t|
     t.integer  "entry_id"
@@ -57,7 +58,7 @@ ActiveRecord::Schema.define(version: 20130622195803) do
     t.datetime "updated_at"
   end
 
-  add_index "user_states", ["entry_id"], name: "index_user_states_on_entry_id"
+  add_index "user_states", ["entry_id", "user_id"], name: "index_user_states_on_entry_id_and_user_id", unique: true
   add_index "user_states", ["user_id"], name: "index_user_states_on_user_id"
 
   create_table "users", force: true do |t|
