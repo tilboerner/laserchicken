@@ -13,11 +13,16 @@ Laserchicken::Application.routes.draw do
     get 'previous', on: :member
   end
 
+  concern :paginate do
+    collection do
+      resources :pages, only: :show, param: :page, path: :page, as: :page, concerns: :serial
+    end
+  end
 
   concern :entry_container do
-    resources :entries, only: [:index, :show], concerns: :serial
+    resources :entries, only: [:index, :show], concerns: [:serial, :paginate]
   end
-  resources :entries, only: [:index, :show], concerns: [:serial]
+  resources :entries, only: [:index, :show], concerns: [:serial, :paginate]
 
 
   resources :subscriptions, only: [:index, :show, :create, :destroy], concerns: [:serial, :entry_container]

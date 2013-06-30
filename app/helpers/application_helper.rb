@@ -4,16 +4,16 @@ module ApplicationHelper
     @navpath = [['Home', root_path]]
     @parent = get_parent_or_nil
     @model = get_model_or_nil
+    @page = get_page_or_first
 
     if @parent
       @title = @parent.title
       @navpath << [@parent.class.name.pluralize.capitalize, url_for(@parent.class)]
       @navpath << [@title, url_for(@parent)]
     else
-      classname = params[:controller].classify
-      @title = classname.pluralize
+      @title = 'Entries'
       begin
-        @navpath << [@title, url_for(controller: params[:controller])]
+        @navpath << [@title, url_for(Entry)]
       rescue ActionController::UrlGenerationError
       end
     end
@@ -42,6 +42,10 @@ module ApplicationHelper
   end
 
 private
+
+  def get_page_or_first
+    Page.find(params[:page] || 1)
+  end
 
   def get_parent_or_nil
     parent_key = params.keys.find { |x| x =~ /_id$/ }
