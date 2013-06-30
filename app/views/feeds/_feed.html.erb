@@ -17,11 +17,6 @@
             <span class="badge<%= ' badge-success' if count > 0 %>"> &#9786; <%= count %></span>
             <% count = feed.entries.starred.size %>
             <span class="badge<%= ' badge-success' if count > 0 %>"> ★ <%= count %></span>
-            <% if feed.valid? %>
-                <span class="badge badge-success">valid</span>
-            <% else %>
-                <span class="badge badge-warning">invalid</span>
-            <% end %>
             <span class="title feed-title"><%= link_to (feed.title or feed.url), feed.url %></span>
             <span>(<%= feed.entries.size %> entries)</span>
             <span><%= content_tag 'a', '(web)', href: feed.feed_url %></span>
