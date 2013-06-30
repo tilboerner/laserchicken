@@ -1,5 +1,5 @@
 class Subscription < ActiveRecord::Base
-  belongs_to :feed
+  belongs_to :feed, counter_cache: true
   belongs_to :user
   has_many :entries, through: :feed
   has_many :user_states, through: :entries
