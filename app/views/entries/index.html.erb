@@ -1,5 +1,5 @@
-<% provide(:title, @title) %>
 <% unless @parent %>
+    <% provide(:title, @title) %>
     <% provide(:subtitle, link_to('subscriptions', subscriptions_path)) %>
     <% provide(:form, render('subscriptions/form')) %>
 <% end %>
