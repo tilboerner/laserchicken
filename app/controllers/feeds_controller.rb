@@ -25,7 +25,7 @@ class FeedsController < ApplicationController
 
 
 	def refresh
-		call_rake :refesh_feed, feed_id: params[:id].to_i
+		call_rake :update_feed, feed_id: params[:id].to_i
 		flash[:notice] = 'updating feed ' + (@feed.title or @feed.feed_url)
 		redirect_to :back
 	rescue ActionController::RedirectBackError
@@ -33,7 +33,7 @@ class FeedsController < ApplicationController
 	end
 
 	def refresh_all
-		call_rake :refresh_active_feeds
+		call_rake :update_active_feeds
 		flash[:notice] = 'updating all active feeds'
 		redirect_to :back
 	rescue ActionController::RedirectBackError
