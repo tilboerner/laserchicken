@@ -1,4 +1,5 @@
 class SubscriptionsController < ApplicationController
+	include EntriesHelper
 
 	def index
 		@subscriptions = Subscription.where(user: current_user)
@@ -10,10 +11,7 @@ class SubscriptionsController < ApplicationController
 	def show
 		@subscription = Subscription.where(user: current_user).find(params[:id])
 		@parent = @subscription
-		@entries = @subscription.entries
-		if params[:unseen]
-			@entries = @entries.unseen_by(current_user)
-		end
+		entries_context
 	end
 
 	def new

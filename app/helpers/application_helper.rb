@@ -4,6 +4,7 @@ module ApplicationHelper
     @navpath = [['Home', root_path]]
     @parent = get_parent_or_nil
     @model = get_model_or_nil
+    @filters = params.except(:action, :controller)
 
     if @parent
       @title = @parent.title

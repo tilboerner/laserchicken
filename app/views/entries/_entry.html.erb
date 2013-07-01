@@ -9,7 +9,7 @@
 		</div>
 		<div class="data">
 			<span class="title title-entry">
-				<%= link_to entry.title, [@parent, entry] %>
+				<%= link_to entry.title, entry_path(entry, @filters) %>
 			</span>
 			<span class="snippet">
 				-

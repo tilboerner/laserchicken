@@ -1,5 +1,12 @@
 module EntriesHelper
 
+  def entries_context
+    @entries = @parent ? @parent.entries : Entry.subscribed_by(current_user)
+    if @filters.include? :unseen
+      @entries = @entries.unseen_by(current_user)
+    end
+  end
+
   def read_unread_link(entry, options = {})
     user_state = entry.userstate(current_user)
     options[:active] = true if user_state.seen
