@@ -28,7 +28,7 @@
 <% else %>
 	<header>
 		<%= render @user_state %>
-		<span class="title">
+		<span class="title title-entry">
 			<%= @entry.author %>
 			<% if @entry.published %>
 				@ <%= time_tag(@entry.published) %>
