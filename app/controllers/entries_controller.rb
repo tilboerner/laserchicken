@@ -17,6 +17,8 @@ class EntriesController < ApplicationController
       .limit(1)
       .first
     redirect_to polymorphic_path([@parent, next_entry], @filters)
+  rescue ArgumentError
+    redirect_to root_path(@filters)
   end
 
   def previous
@@ -28,6 +30,8 @@ class EntriesController < ApplicationController
       .limit(1)
       .first
     redirect_to polymorphic_path([@parent, next_entry], @filters)
+  rescue ArgumentError
+    redirect_to root_path(@filters)
   end
 
 end
