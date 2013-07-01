@@ -1,12 +1,6 @@
 <% provide(:title, @title) %>
-<% provide(:subtitle, render(@page)) %>
 <% unless @parent %>
+    <% provide(:subtitle, link_to('subscriptions', subscriptions_path)) %>
     <% provide(:form, render('subscriptions/form')) %>
-    <%= link_to('show subscriptions', subscriptions_path) %>
 <% end %>
-<% if @page.to_i != 1 %>
-    <%= provide(:previous, link_to("<<", [:previous, @parent, @entry, @page], rel: 'prev', class: 'action')) %>
-<% end %>
-<%= provide(:next, link_to(">>", [:next, @parent, @entry, @page], rel: 'next', class: 'action')) %>
-
 <%= render @entries %>
