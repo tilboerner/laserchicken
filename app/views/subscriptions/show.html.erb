@@ -1,4 +1,4 @@
 <% provide(:title, @subscription.feed.title) %>
-<% provide(:subtitle, link_to(@subscription.feed.url)) %>
+<% provide(:subtitle, link_to(@subscription.feed.url, @subscription.feed.url)) %>
 
 <%= render @subscription, show_complete: true %>

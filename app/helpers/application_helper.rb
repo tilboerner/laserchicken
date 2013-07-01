@@ -43,6 +43,25 @@ module ApplicationHelper
     # end
   end
 
+  def link_to_filter(filter, word)
+    classes = [:action]
+    if @filters.include? filter or (filter.nil? and @filters.empty?)
+      classes << [:active, :disabled]
+    end
+    newfilters = @filters.except(:unseen, :starred)
+    newfilters.merge!({:"#{filter}" => true}) unless filter == nil
+    link_to word, newfilters, class: classes
+  end
+
+  def link_to_next
+    link_to ">>", polymorphic_path([:next, @parent, @model], @filters), rel: 'prev', class: :action
+  end
+
+  def link_to_previous
+    link_to "<<", polymorphic_path([:previous, @parent, @model], @filters), rel: 'prev', class: :action
+  end
+
+
 private
 
   def get_filters

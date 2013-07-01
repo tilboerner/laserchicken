@@ -22,17 +22,11 @@
     </div>
 
     <nav>
-        <div class='nav-left'>
-            <%= yield(:previous) %>
-        </div>
         <div class="nav-center">
             <ul class="breadcrumb">
                 <% breadcrumbs() %>
                 <%= yield(:breadcrumbs) %>
             </ul>
-        </div>
-        <div class='nav-right'>
-            <%= yield(:next) %>
         </div>
     </nav>
 
@@ -42,7 +36,6 @@
             <h2><%= yield(:subtitle) %></h2>
         </div>
     </header>
-
 
     <div id="notifications">
         <% flash.each do |key, value| %>
@@ -55,6 +48,21 @@
         <%= yield(:form) %>
     </div>
 
+    <nav>
+        <div class='nav-left pull-left'>
+        </div>
+        <div class="nav-center">
+            <%= yield(:previous) %>
+            <div class="btn-group">
+                <%= link_to_filter(:unseen, 'new') %>
+                <%= link_to_filter(nil, 'all') %>
+                <%= link_to_filter(:starred, 'stars') %>
+            </div>
+            <%= yield(:next) %>
+        </div>
+        <div class='nav-right pull-right'>
+        </div>
+    </nav>
 
 
     <div id="content">

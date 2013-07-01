@@ -1,6 +1,6 @@
 <% provide(:title, @entry.title) %>
-<% provide(:subtitle, link_to(@entry.feed.url)) %>
-<%= provide(:previous, link_to("<<", polymorphic_path([:previous, @parent, @entry], @filters), rel: 'prev', class: 'action')) %>
-<%= provide(:next, link_to(">>", polymorphic_path([:next, @parent, @entry], @filters), rel: 'next', class: 'action')) %>
+<% provide(:subtitle, @entry.feed.title) %>
+<%= provide(:previous, link_to_previous) %>
+<%= provide(:next, link_to_next) %>
 
 <%= render @entry, show_complete: true %>

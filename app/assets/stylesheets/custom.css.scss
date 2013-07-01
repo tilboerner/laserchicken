@@ -79,11 +79,11 @@ body {
 
 	nav {
 		background-color: #f5f5f5;
-		margin: auto;
 		text-align: center;
 
 		div {
 			display: inline-block;
+			padding: 0 15px;
 		}
 
 		.breadcrumb {
@@ -112,7 +112,6 @@ body {
 
 
 #content {
-	padding-top: 10px;
 	text-align: center;
 }
 
