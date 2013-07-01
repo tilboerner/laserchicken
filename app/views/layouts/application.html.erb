@@ -49,8 +49,6 @@
     </div>
 
     <nav>
-        <div class='nav-left pull-left'>
-        </div>
         <div class="nav-center">
             <%= yield(:previous) %>
             <div class="btn-group">
@@ -59,8 +57,6 @@
                 <%= link_to_filter(:starred, 'stars') %>
             </div>
             <%= yield(:next) %>
-        </div>
-        <div class='nav-right pull-right'>
         </div>
     </nav>
 

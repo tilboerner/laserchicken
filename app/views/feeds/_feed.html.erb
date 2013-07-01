@@ -4,7 +4,7 @@
         <div class="actions">
             <%= link_to "x", #content_tag('i', nil, class: 'icon-minus icon-white'),
                 feed, method: :delete,
-                class: 'action action-danger', title: 'delete feed',
+                class: 'action danger', title: 'delete feed',
                 data: {confirm: 'You sure? All associated subscriptions and stars will be destroyed.'} %>
             <%= link_to "↻", #content_tag('i', nil, class: 'icon-refresh'),
                 [:refresh, feed],
