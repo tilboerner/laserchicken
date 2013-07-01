@@ -1,32 +1,36 @@
 <% show_complete = false unless defined? show_complete %>
+<% if show_complete %>
+	<% @entries = @entries.paginate(page: @page) %>
+	<%= will_paginate(@entries, params: @filters) %>
+<% end %>
 <a name="<%= dom_id subscription %>"></a>
 <section class="subscription<%= ' changed' if subscription.changed? %>">
-<% unless show_complete %>
-	<div class="preview">
-		<div class="actions">
-			<%= link_to 'x', subscription, method: :delete,
-				class: 'action', title: 'delete subscription' %>
-		</div>
-		<div class="data">
-			<span class="title title-subscription">
-				<%= link_to subscription.feed.title, subscription %>
-				<% if subscription.changed? %>
-					(<%= subscription.newcount %>)
-				<% end %>
-			</span>
-			<span class="snippet">
-			</span>
-		</div>
-		<div class="time">
-			<% if modified = subscription.feed.last_modified %>
-				<%= time_tag modified, time_ago_in_words(modified) %>
-			<% end %>
-		</div>
-	</div>
-<% else %>
-	<header>
-	</header>
-	<%= render @entries %>
-<% end %>
-
+	<% unless show_complete %>
+			<div class="preview">
+				<div class="actions">
+					<%= link_to 'x', subscription, method: :delete,
+						class: 'action', title: 'delete subscription' %>
+				</div>
+				<div class="data">
+					<span class="title title-subscription">
+						<%= link_to subscription.feed.title, subscription %>
+						<% if subscription.changed? %>
+							(<%= subscription.newcount %>)
+						<% end %>
+					</span>
+					<span class="snippet">
+					</span>
+				</div>
+				<div class="time">
+					<% if modified = subscription.feed.last_modified %>
+						<%= time_tag modified, time_ago_in_words(modified) %>
+					<% end %>
+				</div>
+			</div>
+	<% else %>
+		<header>
+			<hr />
+		</header>
+		<%= render  @entries %>
+	<% end %>
 </section>

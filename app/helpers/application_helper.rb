@@ -4,7 +4,8 @@ module ApplicationHelper
     @navpath = [['Home', root_path]]
     @parent = get_parent_or_nil
     @model = get_model_or_nil
-    @filters = params.except(:action, :controller)
+    @filters = get_filters
+    @page = params[:page] && params[:page].to_i || 1
 
     if @parent
       @title = @parent.title
@@ -43,6 +44,10 @@ module ApplicationHelper
   end
 
 private
+
+  def get_filters
+    params.except(:action, :controller, :page).reject { |k| k =~ /id$/ }
+  end
 
   def get_parent_or_nil
     parent_key = params.keys.find { |x| x =~ /_id$/ }

@@ -3,4 +3,6 @@
     <% provide(:subtitle, link_to('subscriptions', subscriptions_path)) %>
     <% provide(:form, render('subscriptions/form')) %>
 <% end %>
+<% @entries = @entries.paginate(page: @page) %>
+<%= will_paginate(@entries, params: @filters) %>
 <%= render @entries %>
