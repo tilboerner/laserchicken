@@ -7,6 +7,7 @@ class EntriesController < ApplicationController
   end
 
   def show
+    @entry.userstate(current_user).update(seen: true)
   end
 
   def next
