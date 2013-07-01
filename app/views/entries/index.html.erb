@@ -4,5 +4,7 @@
     <% provide(:form, render('subscriptions/form')) %>
 <% end %>
 <% @entries = @entries.paginate(page: @page) %>
-<%= will_paginate(@entries, params: @filters) %>
+<div style="text-align: center;">
+    <%= will_paginate(@entries, params: @filters) %>
+</div>
 <%= render @entries %>

@@ -1,8 +1,4 @@
 <% show_complete = false unless defined? show_complete %>
-<% if show_complete %>
-	<% @entries = @entries.paginate(page: @page) %>
-	<%= will_paginate(@entries, params: @filters) %>
-<% end %>
 <a name="<%= dom_id subscription %>"></a>
 <section class="subscription<%= ' changed' if subscription.changed? %>">
 	<% unless show_complete %>
@@ -28,9 +24,6 @@
 				</div>
 			</div>
 	<% else %>
-		<header>
-			<hr />
-		</header>
-		<%= render  @entries %>
+		<%= render template: 'entries/index' %>
 	<% end %>
 </section>
