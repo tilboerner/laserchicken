@@ -10,12 +10,23 @@ class EntriesController < ApplicationController
   end
 
   def next
-    next_entry = @entries.select('entries.id').where('entries.published < ?', @entry.published).order('published DESC').limit(1).first
+    next_entry = @entries.select('entries.id')
+      .where(
+        '(entries.published = :published AND entries.id < :id) OR entries.published < :published',
+        {published: @entry.published, id: @entry.id})
+      .limit(1)
+      .first
     redirect_to polymorphic_path([@parent, next_entry], @filters)
   end
 
   def previous
-    next_entry = @entries.select('entries.id').where('entries.published > ?', @entry.published).order('published ASC').limit(1).first
+    next_entry = @entries.select('entries.id')
+      .reverse_order
+      .where(
+        '(entries.published = :published AND entries.id > :id) OR entries.published > :published',
+        {published: @entry.published, id: @entry.id})
+      .limit(1)
+      .first
     redirect_to polymorphic_path([@parent, next_entry], @filters)
   end
 

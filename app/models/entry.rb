@@ -6,7 +6,7 @@ class Entry < ActiveRecord::Base
 
   validates :feed_id, presence: true
 
-  default_scope order('published DESC')
+  default_scope { order('entries.published DESC, entries.id DESC') }
 
   scope :seen_by, -> (user) { joins(:user_states).where(user_states: {user_id: user, seen: true}) }
   scope :unseen_by, -> (user) {
