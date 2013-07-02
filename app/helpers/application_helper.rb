@@ -5,29 +5,29 @@ module ApplicationHelper
     @model = get_model_or_nil
     @filters = get_filters
     @page = params[:page] && params[:page].to_i || 1
-    @navpath = [['Home', polymorphic_path(:root, @filters)]]
+    @breadcrumbs = [['Home', polymorphic_path(:root, @filters)]]
 
     if @parent
       @title = @parent.title
-      @navpath << [@parent.class.name.pluralize.capitalize, polymorphic_path(@parent.class, @filters)]
-      @navpath << [@title, polymorphic_path(@parent, @filters)]
+      @breadcrumbs << [@parent.class.name.pluralize.capitalize, polymorphic_path(@parent.class, @filters)]
+      @breadcrumbs << [@title, polymorphic_path(@parent, @filters)]
     else
       classname = params[:controller].classify
       @title = classname.pluralize
       begin
-        @navpath << [@title, polymorphic_path(params[:controller], @filters)]
+        @breadcrumbs << [@title, polymorphic_path(params[:controller], @filters)]
       rescue
       end
     end
     if @model
       instance_variable_set('@' + @model.class.name.downcase, @model)
-      @navpath << [@model.title, polymorphic_path(@model, @filters)]
+      @breadcrumbs << [@model.title, polymorphic_path(@model, @filters)]
     end
   end
 
 
   def breadcrumbs()
-    crumbs_except_current = @navpath.take(@navpath.size - 1)
+    crumbs_except_current = @breadcrumbs.take(@breadcrumbs.size - 1)
     for (name, target) in crumbs_except_current do
       content_for :breadcrumbs do
         content_tag 'li' do
@@ -35,7 +35,7 @@ module ApplicationHelper
         end
       end
     end
-    # current = @navpath.last
+    # current = @breadcrumbs.last
     # content_for :breadcrumbs do
     #   content_tag 'li' do
     #     link_to current[0], current[1], class: 'active'
