@@ -1,27 +1,27 @@
 module ApplicationHelper
 
   def establish_context
-    @navpath = [['Home', root_path]]
     @parent = get_parent_or_nil
     @model = get_model_or_nil
     @filters = get_filters
     @page = params[:page] && params[:page].to_i || 1
+    @navpath = [['Home', polymorphic_path(:root, @filters)]]
 
     if @parent
       @title = @parent.title
-      @navpath << [@parent.class.name.pluralize.capitalize, url_for(@parent.class)]
-      @navpath << [@title, url_for(@parent)]
+      @navpath << [@parent.class.name.pluralize.capitalize, polymorphic_path(@parent.class, @filters)]
+      @navpath << [@title, polymorphic_path(@parent, @filters)]
     else
       classname = params[:controller].classify
       @title = classname.pluralize
       begin
-        @navpath << [@title, url_for(controller: params[:controller])]
+        @navpath << [@title, polymorphic_path(params[:controller], @filters)]
       rescue ActionController::UrlGenerationError
       end
     end
     if @model
       instance_variable_set('@' + @model.class.name.downcase, @model)
-      @navpath << [@model.title, url_for(@model)]
+      @navpath << [@model.title, polymorphic_path(@model, @filters)]
     end
   end
 
