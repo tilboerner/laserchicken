@@ -1,6 +1,8 @@
 class FeedsController < ApplicationController
 	include FeedsHelper
 
+	before_filter { flash[:error] = 'access forbidden' and redirect_to root_path unless current_user.is_admin? }
+
 	def index
 		@feeds = Feed.all
 	end

@@ -2,19 +2,16 @@ class SubscriptionsController < ApplicationController
 	include EntriesHelper
 
 	def index
-		@subscriptions = Subscription.where(user: current_user)
+		@subscriptions = current_user.subscriptions
 		if params[:unseen]
 			@subscriptions = @subscriptions.changed_for(current_user)
 		end
 	end
 
 	def show
-		@subscription = Subscription.where(user: current_user).find(params[:id])
+		@subscription = current_user.subscriptions.find(params[:id])
 		@parent = @subscription
 		entries_context
-	end
-
-	def new
 	end
 
 	def create
@@ -29,7 +26,7 @@ class SubscriptionsController < ApplicationController
 	end
 
 	def destroy
-		subscription = Subscription.find(params[:id])
+		subscription = current_user.subscriptions.find(params[:id])
 		subscription.destroy
 		redirect_to :back
 	rescue ActionController::RedirectBackError
