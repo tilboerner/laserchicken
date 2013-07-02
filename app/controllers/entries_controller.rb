@@ -7,7 +7,10 @@ class EntriesController < ApplicationController
   end
 
   def show
-    @entry.userstate(current_user).update(seen: true)
+    unless session.delete(:keep_unread) == @entry.id
+      @entry.userstate(current_user).update(seen: true)
+      session[:keep_unread] = @entry.id
+    end
   end
 
   def next
