@@ -9,7 +9,7 @@ class Subscription < ActiveRecord::Base
   scope :changed_for, -> (user) {
     joins(:entries).
     joins('LEFT OUTER JOIN user_states ON user_states.entry_id = entries.id').
-    where('user_states.seen IS NOT ?', true).where(user_states: {user: user}).
+    where('user_states.user_id IS NOT ? OR user_states.seen IS NOT ?', user.id, true).
     group('subscriptions.id') }
 
 
