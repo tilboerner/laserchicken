@@ -16,7 +16,7 @@ module ApplicationHelper
       @title = classname.pluralize
       begin
         @navpath << [@title, polymorphic_path(params[:controller], @filters)]
-      rescue ActionController::UrlGenerationError
+      rescue
       end
     end
     if @model
