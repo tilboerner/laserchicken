@@ -17,7 +17,7 @@
 			</span>
 		</div>
 		<div class="time">
-			<%= entry.timestr %>
+			<%= time_tag(entry.published, time_ago_in_words(entry.published)) if entry.published %>
 		</div>
 		<% unless @parent %>
 			<div class="parent">
