@@ -9,7 +9,8 @@
 				</div>
 				<div class="data">
 					<span class="title title-subscription">
-						<%= link_to subscription.feed.title, subscription %>
+						<%= link_to subscription.feed.title,
+							polymorphic_path(subscription, @filters) %>
 						<% if subscription.changed? %>
 							(<%= subscription.newcount %>)
 						<% end %>
