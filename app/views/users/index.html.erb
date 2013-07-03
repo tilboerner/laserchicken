@@ -1,0 +1,18 @@
+<% provide(:title, 'Users') %>
+<% provide(:form, render('form')) unless @user %>
+
+<% for user in @users do%>
+    <%= content_tag :h4, user.name %>
+    <%= form_for user, namespace: dom_id(user), html: { class: 'form-inline' } do |f| %>
+        <fieldset>
+            <%= f.text_field :name, placeholder: 'name', class: 'input-small', required: true %>
+            <%= f.password_field :password, placeholder: 'password', class: 'input-small', required: true %>
+            <%= f.label :is_admin do %>
+                admin
+                <%= f.check_box :is_admin %>
+            <% end %>
+            <%= f.button "change", class: :action %>
+            <%= link_to "delete", user, method: :delete, data: {confirm: "Delete user #{user.name}? This will DESTROY all associated data, too!"}, class: [:action, :danger] %>
+        </fieldset>
+    <% end %>
+<% end %>

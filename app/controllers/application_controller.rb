@@ -14,6 +14,12 @@ class ApplicationController < ActionController::Base
   	super
   end
 
+  def require_admin_user
+    unless current_user.is_admin?
+      flash[:error] = 'access unauthorized'
+      redirect_to root_path
+    end
+  end
 
   def call_rake(task, options = {})
     options[:rails_env] ||= Rails.env

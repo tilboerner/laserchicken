@@ -21,7 +21,8 @@ module ApplicationHelper
     end
     if @model
       instance_variable_set('@' + @model.class.name.downcase, @model)
-      @breadcrumbs << [@model.title, polymorphic_path(@model, @filters)]
+      crumb_name = @model.respond_to?(:title) ? @model.title : @model.class.name
+      @breadcrumbs << [crumb_name, polymorphic_path(@model, @filters)]
     end
   end
 

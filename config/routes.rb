@@ -24,7 +24,7 @@ Laserchicken::Application.routes.draw do
 
   resources :user_states, only: [:show, :update], path: :states
 
-  resources :users
+  resources :users, only: [:index, :create, :update, :destroy]
 
   resources :feeds, concerns: :entry_container do
     get :refresh_all, on: :collection

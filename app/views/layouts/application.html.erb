@@ -15,8 +15,7 @@
 
         <% if signed_in? %>
             <div class="user">
-                <%= link_to "↻", refresh_all_feeds_path,
-                    title: 'refresh all active feeds' if current_user.is_admin? %>
+                <%= render('shared/admin_actions') if current_user.is_admin? %>
                 Hi, <%= current_user.name %>!
                 <%= link_to "logout", logout_path %>
             </div>
