@@ -10,8 +10,8 @@ class Entry < ActiveRecord::Base
 
   scope :seen_by, -> (user) { joins(:user_states).where(user_states: {user_id: user, seen: true}) }
   scope :unseen_by, -> (user) {
-    joins("LEFT OUTER JOIN user_states ON user_states.entry_id = entries.id")\
-    .where("user_states.seen IS NOT ? OR user_states.user_id IS NOT ?", true, user.id)
+    # slow for huge, otherwise unconstrained collections of entries
+    where.not(id: UserState.select(:entry_id).where(user: user, seen: true))
   }
 
   scope :starred, -> { joins(:user_states).where(user_states: {starred: true}) }

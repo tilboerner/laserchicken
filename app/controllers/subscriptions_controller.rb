@@ -6,7 +6,7 @@ class SubscriptionsController < ApplicationController
 	def index
 		@subscriptions = current_user.subscriptions
 		if params[:unseen]
-			@subscriptions = @subscriptions.changed
+			@subscriptions = @subscriptions.changed_for(current_user)
 		end
 	end
 
