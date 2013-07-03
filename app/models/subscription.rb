@@ -6,11 +6,13 @@ class Subscription < ActiveRecord::Base
 
   default_scope { includes(:feed).order('feeds.last_modified DESC') }
 
-  scope :changed_for, -> (user) {
-    joins(:entries).
-    joins('LEFT OUTER JOIN user_states ON user_states.entry_id = entries.id').
-    where('user_states.user_id IS NOT ? OR user_states.seen IS NOT ?', user.id, true).
-    group('subscriptions.id') }
+  scope :changed, -> {
+    joins(:entries)
+    .joins('LEFT OUTER JOIN user_states ON user_states.entry_id = entries.id')
+    .where('(user_states.user_id = subscriptions.user_id OR user_states.user_id IS ?)', nil)
+    .where('user_states.seen IS NOT ?', true)
+    .group('subscriptions.id')
+  }
 
 
   validates_presence_of :feed
