@@ -70,6 +70,12 @@ module ApplicationHelper
       end
   end
 
+  def redirect_back_or_rescue(rescuepath = nil)
+    redirect_to :back
+  rescue ActionController::RedirectBackError
+    redirect_to (rescuepath || polymorphic_path(:root, @filters))
+  end
+
 private
 
   def get_filters

@@ -13,6 +13,16 @@ class EntriesController < ApplicationController
     end
   end
 
+  def see_all
+    ActiveRecord::Base.transaction do
+      for entry in @entries.unseen_by(current_user) do
+        entry.userstate(current_user).update(seen: true)
+      end
+    end
+    flash[:success] = 'all marked as seen'
+    redirect_back_or_rescue
+  end
+
   def next
     next_entry = @entries.select('entries.id')
       .where(

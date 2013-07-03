@@ -13,11 +13,14 @@ Laserchicken::Application.routes.draw do
     get 'previous', on: :member
   end
 
+  concern :see_all do
+    put 'see_all', on: :collection
+  end
 
   concern :entry_container do
-    resources :entries, only: [:index, :show], concerns: :serial
+    resources :entries, only: [:index, :show], concerns: [:serial, :see_all]
   end
-  resources :entries, only: [:index, :show], concerns: [:serial]
+  resources :entries, only: [:index, :show], concerns: [:serial, :see_all]
 
 
   resources :subscriptions, only: [:index, :show, :create, :destroy], concerns: [:serial, :entry_container]
