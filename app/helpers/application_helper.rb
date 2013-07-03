@@ -66,7 +66,7 @@ module ApplicationHelper
 private
 
   def get_filters
-    params.except(:action, :controller, :page).reject { |k| k =~ /id$/ }
+    params.slice(:unseen, :starred)
   end
 
   def get_parent_or_nil
