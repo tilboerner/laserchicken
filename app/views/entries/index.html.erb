@@ -1,6 +1,6 @@
 <% unless @parent %>
     <% provide(:title, @title) %>
-    <% provide(:subtitle, link_to('subscriptions', subscriptions_path)) %>
+    <% provide(:subtitle, link_to('subscriptions', subscriptions_path(@filters))) %>
     <% provide(:form, render('subscriptions/form')) %>
 <% end %>
 <% @entries = @entries.paginate(page: @page) %>
