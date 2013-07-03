@@ -1,7 +1,7 @@
 class Entry < ActiveRecord::Base
   include ActionView::Helpers
   belongs_to :feed, counter_cache: true
-  has_many :user_states
+  has_many :user_states, dependent: :destroy
   has_many :subscriptions, through: :feed
 
   validates :feed_id, presence: true
