@@ -62,6 +62,13 @@ module ApplicationHelper
     link_to "<<", polymorphic_path([:previous, @parent, @model], @filters), rel: 'prev', class: :action
   end
 
+  def entry_filter_actions
+      content_tag 'div', class: 'action-group' do
+        link_to_filter(:unseen, 'new') +
+        link_to_filter(nil, 'all') +
+        link_to_filter(:starred, 'stars')
+      end
+  end
 
 private
 

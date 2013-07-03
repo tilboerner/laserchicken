@@ -23,12 +23,10 @@
     </div>
 
     <nav>
-        <div class="nav-center">
-            <ul class="breadcrumb">
-                <% breadcrumbs() %>
-                <%= yield(:breadcrumbs) %>
-            </ul>
-        </div>
+        <ul class="breadcrumb">
+            <% breadcrumbs() %>
+            <%= yield(:breadcrumbs) %>
+        </ul>
     </nav>
 
     <header>
@@ -50,15 +48,9 @@
     </div>
 
     <nav>
-        <div class="nav-center">
-            <%= yield(:previous) %>
-            <div class="btn-group">
-                <%= link_to_filter(:unseen, 'new') %>
-                <%= link_to_filter(nil, 'all') %>
-                <%= link_to_filter(:starred, 'stars') %>
-            </div>
-            <%= yield(:next) %>
-        </div>
+        <%= yield(:previous) %>
+        <%= yield(:filter_actions) %>
+        <%= yield(:next) %>
     </nav>
 
 

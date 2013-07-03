@@ -166,6 +166,10 @@ body {
 	}
 }
 
+.action-group {
+	@extend .btn-group;
+}
+
 a.action {
 	@extend .btn;
 	@extend .btn-mini;

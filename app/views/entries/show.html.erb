@@ -2,5 +2,6 @@
 <% provide(:subtitle, @entry.feed.title) %>
 <%= provide(:previous, link_to_previous) %>
 <%= provide(:next, link_to_next) %>
+<% provide(:filter_actions, entry_filter_actions) %>
 
 <%= render @entry, show_complete: true %>

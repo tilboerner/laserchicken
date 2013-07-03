@@ -3,6 +3,7 @@
     <% provide(:subtitle, link_to('subscriptions', subscriptions_path(@filters))) %>
     <% provide(:form, render('subscriptions/form')) %>
 <% end %>
+<% provide(:filter_actions, entry_filter_actions) %>
 <% @entries = @entries.paginate(page: @page) %>
 <div style="text-align: center;">
     <%= will_paginate(@entries, params: @filters) %>
