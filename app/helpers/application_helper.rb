@@ -55,7 +55,7 @@ module ApplicationHelper
   end
 
   def link_to_next
-    link_to ">>", polymorphic_path([:next, @parent, @model], @filters), rel: 'prev', class: :action
+    link_to ">>", polymorphic_path([:next, @parent, @model], @filters), rel: 'next', class: :action
   end
 
   def link_to_previous
