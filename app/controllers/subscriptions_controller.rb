@@ -22,15 +22,13 @@ class SubscriptionsController < ApplicationController
 		redirect_to subscription
 	rescue ActiveRecord::RecordInvalid
 		flash[:error] =  "Not a valid feed: #{url[:feed_url]}"
-		redirect_to :back
+		redirect_back_or_rescue
 	end
 
 	def destroy
 		subscription = current_user.subscriptions.find(params[:id])
 		subscription.destroy
-		redirect_to :back
-	rescue ActionController::RedirectBackError
-		redirect_to subscriptions_path
+		redirect_back_or_rescue
 	end
 
 end

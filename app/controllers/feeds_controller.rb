@@ -16,7 +16,7 @@ class FeedsController < ApplicationController
 		redirect_to feeds_path
 	rescue ActiveRecord::RecordInvalid
 		flash[:error] = "Not a valid feed: #{params[:feed][:feed_url]}"
-		redirect_to :back
+		redirect_back_or_rescue
 	end
 
 	def destroy
@@ -29,17 +29,14 @@ class FeedsController < ApplicationController
 	def refresh
 		call_rake :update_feed, feed_id: params[:id].to_i
 		flash[:notice] = 'updating feed ' + (@feed.title or @feed.feed_url)
-		redirect_to :back
-	rescue ActionController::RedirectBackError
-		redirect_to feeds_path
+		redirect_back_or_rescue feeds_path
 	end
 
 	def refresh_all
 		call_rake :update_active_feeds
 		flash[:notice] = 'updating all active feeds'
 		redirect_to :back
-	rescue ActionController::RedirectBackError
-		redirect_to feeds_path
+		redirect_back_or_rescue feeds_path
 	end
 
 end
