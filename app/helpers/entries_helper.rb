@@ -31,9 +31,12 @@ module EntriesHelper
       class: classes)
   end
 
-  def mark_all_seen_action(basepath)
+  def mark_all_seen_action(basepath, options={})
     path = [:see_all] + basepath
-    link_to 'mark all as seen', polymorphic_path(path, @filters), method: :put, class: :action
+    text = options[:text] || 'mark all as seen'
+    title = 'mark all as seen'
+    classes = [:action] + (options[:classes] || [])
+    link_to "#{text}", polymorphic_path(path, @filters), method: :put, class: classes, title: title
   end
 
 end

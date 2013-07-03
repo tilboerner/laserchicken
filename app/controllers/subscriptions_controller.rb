@@ -1,6 +1,8 @@
 class SubscriptionsController < ApplicationController
 	include EntriesHelper
 
+	helpers()
+
 	def index
 		@subscriptions = current_user.subscriptions
 		if params[:unseen]

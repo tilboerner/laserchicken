@@ -6,6 +6,11 @@
 				<div class="actions">
 					<%= link_to 'x', subscription, method: :delete,
 						class: 'action', title: 'delete subscription' %>
+					<% if subscription.changed? %>
+						<%= mark_all_seen_action([subscription, :entries], text: '☐') %>
+					<% else %>
+						<%= mark_all_seen_action([subscription, :entries], text: '☑', classes: [:active, :disabled]) %>
+					<% end %>
 				</div>
 				<div class="data">
 					<span class="title title-subscription">
