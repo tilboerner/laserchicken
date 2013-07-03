@@ -5,8 +5,11 @@ class SubscriptionsController < ApplicationController
 
 	def index
 		@subscriptions = current_user.subscriptions
-		if params[:unseen]
+		if @filters[:unseen]
 			@subscriptions = @subscriptions.changed_for(current_user)
+		end
+		if @filters[:starred]
+			@subscriptions = @subscriptions.with_stars
 		end
 	end
 

@@ -2,8 +2,11 @@ module EntriesHelper
 
   def entries_context
     @entries = @parent ? @parent.entries : Entry.subscribed_by(current_user)
-    if @filters.include? :unseen
+    if @filters[:unseen]
       @entries = @entries.unseen_by(current_user)
+    end
+    if @filters[:starred]
+      @entries = @entries.starred_by(current_user)
     end
   end
 

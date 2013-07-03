@@ -16,6 +16,13 @@ class Subscription < ActiveRecord::Base
     .group('subscriptions.id')
   }
 
+  scope :with_stars, -> {
+    joins(entries: :user_states)
+    .where('subscriptions.user_id = user_states.user_id')
+    .where(user_states: {starred: true})
+    .group('subscriptions.id')
+  }
+
 
   validates_presence_of :feed
   validates_presence_of :user
