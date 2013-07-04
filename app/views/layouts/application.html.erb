@@ -57,6 +57,10 @@
     <%= yield %>
     </div>
 
+    <nav>
+        <%= yield(:previous) %>
+        <%= yield(:next) %>
+    </nav>
 
     <% if Rails.env.development? %>
     <hr />
