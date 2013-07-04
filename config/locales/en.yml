@@ -44,14 +44,14 @@ en:
         one: "1 day"
         other: "%{count} days"
       about_x_months:
-        one: "~1 mon"
-        other: "~%{count} mon"
+        one: "1 mon"
+        other: "%{count} mon"
       x_months:
         one: "1 mon"
         other: "%{count} mon"
       about_x_years:
-        one: "~1 year"
-        other: "~%{count} yr"
+        one: "1 yr"
+        other: "%{count} yrs"
       over_x_years:
         one: "1 yr"
         other: "%{count} yrs"
