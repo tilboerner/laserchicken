@@ -35,7 +35,6 @@ class FeedsController < ApplicationController
 	def refresh_all
 		call_rake :update_active_feeds
 		flash[:notice] = 'updating all active feeds'
-		redirect_to :back
 		redirect_back_or_rescue feeds_path
 	end
 
