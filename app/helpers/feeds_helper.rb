@@ -16,8 +16,7 @@ module FeedsHelper
 			updatable_attributes.each do |name, value|
 				feedmodel.update_attribute(name, value)		# skip validation (!!!), which would http-get the feed again
 			end
-		else
-			feedmodel.touch
+			feedmodel.subscriptions.each { |s| s.update_dependent_fields }
 		end
 		feedmodel
 	end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130630132144) do
+ActiveRecord::Schema.define(version: 20130704132257) do
 
   create_table "entries", force: true do |t|
     t.string   "title"
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 20130630132144) do
     t.integer  "feed_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "title"
+    t.datetime "last_modified"
   end
 
   add_index "subscriptions", ["feed_id"], name: "index_subscriptions_on_feed_id"

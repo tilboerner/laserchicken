@@ -24,9 +24,8 @@
 					</span>
 				</div>
 				<div class="time">
-					<% if modified = subscription.feed.last_modified %>
-						<%= time_tag modified, time_ago_in_words(modified) %>
-					<% end %>
+					<% modified = subscription.last_modified %>
+					<%= time_tag modified, time_ago_in_words(modified) %>
 				</div>
 			</div>
 	<% else %>
