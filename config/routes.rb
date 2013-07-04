@@ -4,7 +4,7 @@ Laserchicken::Application.routes.draw do
 
   root 'entries#index'
 
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :sessions, only: [:create]
   get '/login', to: 'sessions#new'
   get '/logout', to: 'sessions#destroy', via: :delete
 
@@ -27,7 +27,7 @@ Laserchicken::Application.routes.draw do
 
   resources :user_states, only: [:show, :update], path: :states
 
-  resources :users, only: [:index, :create, :update, :destroy]
+  resources :users, only: [:index, :new, :create, :update, :destroy]
 
   resources :feeds, concerns: :entry_container do
     get :refresh_all, on: :collection

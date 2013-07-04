@@ -1,6 +1,7 @@
 module ApplicationHelper
 
   def establish_context
+    @appname = Rails.application.class.parent_name
     @parent = get_parent_or_nil
     @model = get_model_or_nil
     @filters = get_filters
@@ -75,9 +76,14 @@ module ApplicationHelper
   end
 
   def redirect_back_or_rescue(rescuepath = nil)
-    redirect_to :back
+    redirect_to :back, status: :see_other
   rescue ActionController::RedirectBackError
-    redirect_to (rescuepath || app_path(:root))
+    redirect_to(rescuepath || app_path(:root), status: :see_other)
+  end
+
+  def get_model_errors(model = nil)
+    model = @model if model.nil?
+    model.nil? ? model : model.errors.full_messages.to_sentence
   end
 
 private

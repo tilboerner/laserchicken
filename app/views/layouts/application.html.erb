@@ -1,8 +1,7 @@
-<% appname = Rails.application.class.parent_name %>
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= appname %></title>
+  <title><%= @appname %></title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -11,7 +10,7 @@
 <div id="all">
 
     <div class="banner">
-        <%= link_to "I am #{appname}!", root_path, id: "logo" %>
+        <%= link_to "I am #{@appname}!", root_path, id: "logo" %>
 
         <% if signed_in? %>
             <div class="user">

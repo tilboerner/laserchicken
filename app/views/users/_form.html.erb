@@ -1,13 +1,24 @@
 <% @user = User.new unless defined?(@user) %>
 <%= form_for @user do |f| %>
     <fieldset>
-        <legend><%= @user.new_record? ? 'Create' : 'Change' %> User</legend>
+        <legend>
+            <%= @user.new_record? ? 'Create' : 'Change' %> User
+        </legend>
+
         <%= f.text_field :name, placeholder: 'username', class: 'input-small', required: true %>
         <%= f.password_field :password, placeholder: 'password', class: 'input-small', required: true %>
-        <%= f.label :is_admin do %>
-            <%= f.check_box :is_admin %>
-            admin
+        <span class="help-block">10-letter minimum password. Hint: Make it a phrase.</span>
+        <% if User.exists? %>
+            <%= f.label :is_admin do %>
+                <%= f.check_box :is_admin %>
+                admin
+            <% end %>
+        <% else %>
+            <%= f.label :is_admin do %>
+                <%= f.check_box :is_admin, disabled: :disabled %>
+                admin
+            <% end %>
         <% end %>
+        <%= f.button "Make it so", class: 'btn btn-success' %>
     </fieldset>
-    <%= f.button "Make it so", class: 'btn btn-success' %>
 <% end %>

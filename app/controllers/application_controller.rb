@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   include SessionsHelper
 
-  before_filter { redirect_to login_path unless signed_in? or ['/login', '/sessions'].include? request.fullpath }
+  before_filter :require_logged_in_user
   before_filter { establish_context }
 
   def handle_unverified_request
@@ -14,10 +14,18 @@ class ApplicationController < ActionController::Base
   	super
   end
 
-  def require_admin_user
-    unless current_user.is_admin?
+  def require_admin_user(options = {})
+    unless options[:exception] or (signed_in? && current_user.is_admin?)
       flash[:error] = 'access unauthorized'
       redirect_to root_path
+    end
+  end
+
+  def require_logged_in_user
+    if User.exists?
+      redirect_to login_path unless signed_in? or [login_path, sessions_path].include? request.fullpath
+    else
+      redirect_to new_user_path unless [new_user_path, users_path].include? request.fullpath
     end
   end
 

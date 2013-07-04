@@ -17,7 +17,12 @@ module SessionsHelper
 
 	def current_user
 		if session[:remember_token]
-			@current_user ||= User.find(session[:remember_token])
+			begin
+				@current_user ||= User.find(session[:remember_token])
+			rescue ActiveRecord::RecordNotFound
+				session.delete(:remember_token)
+				return nil
+			end
 		end
 	end
 
