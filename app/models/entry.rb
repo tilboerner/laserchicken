@@ -32,7 +32,7 @@ class Entry < ActiveRecord::Base
   end
 
   def text
-    (self.content or self.summary)
+    (self.content || self.summary || '')
   end
 
   def timestr
