@@ -1,5 +1,6 @@
 <% provide(:title, @entry.title) %>
-<% provide(:subtitle, @entry.feed.title) %>
+<% up = guess_a_parent_for(@entry) %>
+<% provide(:subtitle, link_to_if(up.instance_of?(Subscription), up.title, up)) %>
 <%= provide(:previous, link_to_previous) %>
 <%= provide(:next, link_to_next) %>
 <% provide(:filter_actions, entry_filter_actions) %>

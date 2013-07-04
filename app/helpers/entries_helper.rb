@@ -42,4 +42,13 @@ module EntriesHelper
     link_to "#{text}", app_path(path), method: :put, class: classes, title: title
   end
 
+  def guess_a_parent_for(entry)
+    return @parent if @parent
+    if current_user and entry.subscribed_by?(current_user)
+      entry.feed.subscriptions.where(user: current_user).first
+    else
+      return entry.feed
+    end
+  end
+
 end

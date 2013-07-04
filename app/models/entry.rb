@@ -23,6 +23,10 @@ class Entry < ActiveRecord::Base
     self.user_states.where(user: user).seen
   end
 
+  def subscribed_by?(user)
+    feed.subscriptions.where(user: user).exists?
+  end
+
   def userstate(user)
     self.user_states.find_by(user: user) or UserState.new(user: user, entry: self)
   end
