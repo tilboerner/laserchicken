@@ -5,24 +5,24 @@ module ApplicationHelper
     @model = get_model_or_nil
     @filters = get_filters
     @page = params[:page] && params[:page].to_i || 1
-    @breadcrumbs = [['Home', polymorphic_path(:root, @filters)]]
+    @breadcrumbs = [['Home', app_path(:root)]]
 
     if @parent
       @title = @parent.title
-      @breadcrumbs << [@parent.class.name.pluralize.capitalize, polymorphic_path(@parent.class, @filters)]
-      @breadcrumbs << [@title, polymorphic_path(@parent, @filters)]
+      @breadcrumbs << [@parent.class.name.pluralize.capitalize, app_path(@parent.class)]
+      @breadcrumbs << [@title, app_path(@parent)]
     else
       classname = params[:controller].classify
       @title = classname.pluralize
       begin
-        @breadcrumbs << [@title, polymorphic_path(params[:controller], @filters)]
+        @breadcrumbs << [@title, app_path(params[:controller])]
       rescue
       end
     end
     if @model
       instance_variable_set('@' + @model.class.name.downcase, @model)
       crumb_name = @model.respond_to?(:title) ? @model.title : @model.class.name
-      @breadcrumbs << [crumb_name, polymorphic_path(@model, @filters)]
+      @breadcrumbs << [crumb_name, app_path(@model)]
     end
   end
 
@@ -44,6 +44,10 @@ module ApplicationHelper
     # end
   end
 
+  def app_path(target)
+    polymorphic_path(target, @filters)
+  end
+
   def link_to_filter(filter, word)
     classes = [:action]
     if @filters.include? filter or (filter.nil? and @filters.empty?)
@@ -55,11 +59,11 @@ module ApplicationHelper
   end
 
   def link_to_next
-    link_to ">>", polymorphic_path([:next, @parent, @model], @filters), rel: 'next', class: :action
+    link_to ">>", app_path([:next, @parent, @model]), rel: 'next', class: :action
   end
 
   def link_to_previous
-    link_to "<<", polymorphic_path([:previous, @parent, @model], @filters), rel: 'prev', class: :action
+    link_to "<<", app_path([:previous, @parent, @model]), rel: 'prev', class: :action
   end
 
   def entry_filter_actions
@@ -73,7 +77,7 @@ module ApplicationHelper
   def redirect_back_or_rescue(rescuepath = nil)
     redirect_to :back
   rescue ActionController::RedirectBackError
-    redirect_to (rescuepath || polymorphic_path(:root, @filters))
+    redirect_to (rescuepath || app_path(:root))
   end
 
 private

@@ -9,7 +9,7 @@
 		</div>
 		<div class="data">
 			<span class="title title-entry">
-				<%= link_to entry.title, polymorphic_path([@parent, entry], @filters) %>
+				<%= link_to entry.title, app_path([@parent, entry]) %>
 			</span>
 			<span class="snippet">
 				-

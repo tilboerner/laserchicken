@@ -39,7 +39,7 @@ module EntriesHelper
     text = options[:text] || 'mark all as seen'
     title = 'mark all as seen'
     classes = [:action] + (options[:classes] || [])
-    link_to "#{text}", polymorphic_path(path, @filters), method: :put, class: classes, title: title
+    link_to "#{text}", app_path(path), method: :put, class: classes, title: title
   end
 
 end

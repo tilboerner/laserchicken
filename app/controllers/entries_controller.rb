@@ -30,7 +30,7 @@ class EntriesController < ApplicationController
         {published: @entry.published, id: @entry.id})
       .limit(1)
       .first
-    redirect_to polymorphic_path([@parent, next_entry], @filters)
+    redirect_to app_path([@parent, next_entry])
   rescue ArgumentError
     redirect_to root_path(@filters)
   end
@@ -43,7 +43,7 @@ class EntriesController < ApplicationController
         {published: @entry.published, id: @entry.id})
       .limit(1)
       .first
-    redirect_to polymorphic_path([@parent, next_entry], @filters)
+    redirect_to app_path([@parent, next_entry])
   rescue ArgumentError
     redirect_to root_path(@filters)
   end
