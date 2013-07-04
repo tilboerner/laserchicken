@@ -54,7 +54,7 @@ private
     if @user.save
       sign_in(@user)
       flash[:success] = "Welcome to #{@appname}, #{@user.name}!"
-      redirect_to root_path
+      redirect_303 root_path
     else
       flash.now[:error] = "Cannot create user: " + get_model_errors(@user)
       render 'new'

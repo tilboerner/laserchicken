@@ -75,10 +75,14 @@ module ApplicationHelper
       end
   end
 
+  def redirect_303(target)
+    redirect_to target, status: :see_other
+  end
+
   def redirect_back_or_rescue(rescuepath = nil)
-    redirect_to :back, status: :see_other
+    redirect_303 :back
   rescue ActionController::RedirectBackError
-    redirect_to(rescuepath || app_path(:root), status: :see_other)
+    redirect_303(rescuepath || app_path(:root))
   end
 
   def get_model_errors(model = nil)

@@ -30,9 +30,9 @@ class EntriesController < ApplicationController
         {published: @entry.published, id: @entry.id})
       .limit(1)
       .first
-    redirect_to app_path([@parent, next_entry])
+    redirect_303 app_path([@parent, next_entry])
   rescue ArgumentError
-    redirect_to root_path(@filters)
+    redirect_303 root_path(@filters)
   end
 
   def previous
@@ -43,9 +43,9 @@ class EntriesController < ApplicationController
         {published: @entry.published, id: @entry.id})
       .limit(1)
       .first
-    redirect_to app_path([@parent, next_entry])
+    redirect_303 app_path([@parent, next_entry])
   rescue ArgumentError
-    redirect_to root_path(@filters)
+    redirect_303 root_path(@filters)
   end
 
 end

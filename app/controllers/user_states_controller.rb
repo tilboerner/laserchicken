@@ -8,7 +8,7 @@ class UserStatesController < ApplicationController
     newstate = params.require(:user_state).permit(:seen, :starred)
     @user_state = Entry.find(params[:id]).userstate(current_user)
     @user_state.update(newstate)
-    redirect_to :back
+    redirect_303 :back
   rescue ActionController::RedirectBackError
     render 'show'
   end

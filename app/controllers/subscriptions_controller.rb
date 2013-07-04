@@ -24,7 +24,7 @@ class SubscriptionsController < ApplicationController
 		feed = Feed.find_or_create_by!(url)
 		subscription = Subscription.find_or_create_by(user: current_user, feed: feed)
 		flash[:success] = "Subscribed to feed #{feed.title}"
-		redirect_to subscription
+		redirect_303 subscription
 	rescue ActiveRecord::RecordInvalid
 		flash[:error] =  "Not a valid feed: #{url[:feed_url]}"
 		redirect_back_or_rescue

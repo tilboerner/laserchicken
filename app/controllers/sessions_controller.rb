@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
 
 	def new
 		if signed_in?
-			redirect_to root_path
+			redirect_303 root_path
 		end
 	end
 
@@ -12,16 +12,16 @@ class SessionsController < ApplicationController
 		if user and user.authenticate(password)
 			sign_in user
 			flash[:success] = "Signed in as #{name}"
-			redirect_to root_path
+			redirect_303 root_path
 		else
 			flash[:error] = 'Invalid name or password'
-			redirect_to login_path
+			redirect_303 login_path
 		end
 	end
 
 	def destroy
 		sign_out
-		redirect_to root_path
+		redirect_303 root_path
 	end
 
 end

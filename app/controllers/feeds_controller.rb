@@ -13,7 +13,7 @@ class FeedsController < ApplicationController
 
 	def create
 		@feed = Feed.create!(params.require(:feed).permit(:feed_url))
-		redirect_to feeds_path
+		redirect_303 feeds_path
 	rescue ActiveRecord::RecordInvalid
 		flash[:error] = "Not a valid feed: #{params[:feed][:feed_url]}"
 		redirect_back_or_rescue
@@ -22,7 +22,7 @@ class FeedsController < ApplicationController
 	def destroy
 		@feed = Feed.find(params[:id])
 		@feed.destroy
-		redirect_to feeds_path
+		redirect_303 feeds_path
 	end
 
 
