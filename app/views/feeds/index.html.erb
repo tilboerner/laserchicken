@@ -1,4 +1,9 @@
 <% provide(:title, 'Known Feeds') %>
 <% provide(:form, link_to("↻ all", refresh_all_feeds_path,
 		title: 'refresh all active feeds', class: "btn btn-info btn-small")) %>
-<%= render @feeds %>
+
+<% if @feeds.any? %>
+    <%= render @feeds %>
+<% else %>
+    <em>no feeds to view</em>
+<% end %>

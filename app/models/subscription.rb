@@ -4,15 +4,14 @@ class Subscription < ActiveRecord::Base
   has_many :entries, through: :feed
   has_many :user_states, through: :entries
 
-  default_scope { includes(:feed).order('feeds.last_modified DESC') }
+  # default_scope { includes(:feed).order('feeds.last_modified DESC') }
 
   scope :changed_for, -> (user) {
     joins(:entries)
     .references(:user_states)
     .where.not(
       # slow with otherwise unconstrained subscriptions
-      entries: {id: UserState.select(:entry_id).where(seen: true, user: user)}
-    )
+      entries: {id: UserState.select(:entry_id).where(seen: true, user: user)})
     .group('subscriptions.id')
   }
 

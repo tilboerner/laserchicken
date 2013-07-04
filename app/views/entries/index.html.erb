@@ -13,4 +13,11 @@
 <div style="text-align: center;">
     <%= will_paginate(@entries, params: @filters) %>
 </div>
-<%= render @entries %>
+
+<% if @entries.any? %>
+    <%= render @entries %>
+<% else %>
+    <div style="text-align: center">
+        <em>no entries to view</em>
+    </div>
+<% end %>
