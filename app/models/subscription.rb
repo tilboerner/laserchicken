@@ -11,7 +11,7 @@ class Subscription < ActiveRecord::Base
 
   before_validation :ensure_dependent_fields_are_set
 
-  default_scope { order('last_modified DESC') }
+  default_scope { order('subscriptions.last_modified DESC') }
 
   scope :changed_for, -> (user) {
     joins(:entries)
@@ -43,6 +43,7 @@ class Subscription < ActiveRecord::Base
 
   def update_dependent_fields
     set_last_modified_from_feed
+    save!
   end
 
   def ensure_dependent_fields_are_set
