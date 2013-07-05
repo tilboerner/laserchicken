@@ -3,8 +3,8 @@
 
 $main_foreground: #000;
 $main_background: #fff;
-$minor_foreground: #888;
-$minor_background: #eee;
+$minor_foreground: #777;
+$minor_background: #efefef;
 
 $actionable: #0088cc;
 
@@ -147,13 +147,14 @@ body {
 	}
 
 	.data {
-		width: 83%;
+		max-width: 78%;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 	}
 
 	.time {
+		float: right;
 		overflow: hidden;
 		padding-right: 5px;
 		padding-left: 5px;
@@ -161,6 +162,7 @@ body {
 	}
 
 	.parent {
+		float: left;
 		color: $minor_foreground;
 		padding-left: 10px;
 	}
@@ -179,6 +181,10 @@ a.action {
 	}
 }
 
+
+time {
+	@extend .badge;
+}
 
 section {
 	text-align: left;
@@ -199,7 +205,7 @@ article {
 	
 	max-width: 600px;
 	margin: 5px auto;
-	padding: 5px 20px;
+	padding: 5px 10px;
 
 	text-align: left;
 
