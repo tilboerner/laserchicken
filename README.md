@@ -28,6 +28,7 @@ Growth Status: _fledgling_ (alpha)
 ### pending:
 
 * keyboard shortcuts
+* import stars and likes from Google Reader JSON
 * shinier UI
 * search (?)
 
@@ -45,7 +46,7 @@ For the time being, the HEAD commit on https://github.com/tilboerner/laserchicke
 
 ## How to...
 
-### setup
+### Setup
 
     $ git clone https://github.com/tilboerner/laserchicken.git
     $ cd laserchicken
