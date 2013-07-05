@@ -15,7 +15,7 @@ desc "Import feed subscriptions from an OPML file"
 task :import_subscriptions_from_opml => :environment do
   include FeedsHelper
   opml_src = ENV['OPML_SOURCE']
-  user = User.find(ENV['USER_ID'])
+  user = User.find_by(name: ENV['USER_NAME'])
   opml = OpmlFeed.new
   opml.parse_opml(opml_src)
   errors = {}
