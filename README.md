@@ -3,7 +3,7 @@ Laserchicken
 
 RSS reader web application built on Rails.
 
-It was conceived as a replacement for the late [Google Reader][], and as such it can import your subscriptions from a [backup][] (which you can still get until 12PM PST July 15, 2013).
+It was conceived as a replacement for the late [Google Reader][], and as such it can import your subscriptions from [backups][] (which you can still get until 12PM PST July 15, 2013).
 
 Find Laserchicken on https://github.com/tilboerner/laserchicken .
 
@@ -96,7 +96,7 @@ If you want the `rails server` to serve the static assets for you (like CSS or J
 
     config/environments/production.rb
 
-and have a look at `config.serve_static_assets` and 'config.assets.compile`. Otherwise, relevant files will not go out to the client.
+and have a look at `config.serve_static_assets` and `config.assets.compile`. Otherwise, relevant files will not go out to the client.
 
 ### learn about Rails
 
