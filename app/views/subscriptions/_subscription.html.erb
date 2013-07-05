@@ -14,7 +14,7 @@
 				</div>
 				<div class="data">
 					<span class="title title-subscription">
-						<%= link_to subscription.feed.title,
+						<%= link_to subscription.title,
 							app_path(subscription) %>
 						<% if subscription.changed? %>
 							(<%= subscription.newcount %>)

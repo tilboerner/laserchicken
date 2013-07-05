@@ -38,7 +38,7 @@ class Subscription < ActiveRecord::Base
   end
 
   def url
-    feed.url
+    feed.url || feed.feed_url
   end
 
   def update_dependent_fields
