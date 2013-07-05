@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   before_save :make_admin_if_must
   before_destroy :make_sure_admin_deleted_last
 
+  before_validation { self.password_confirmation = self.password }
+
 
   scope :admin, -> { where(is_admin: true) }
 
