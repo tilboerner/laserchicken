@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0.rc1'
+gem 'rails', '~> 4.0.0'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0.rc1'
+gem 'sass-rails', '~> 4.0.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -32,15 +32,9 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'feedzirra', '~> 0.2.0.rc2'
-gem 'opml-reader', '~> 0.0.1'
-
-gem 'bootstrap-sass', '>= 2.3'
-
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 
-gem 'will_paginate', '~> 3.0.0'
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -50,3 +44,13 @@ gem 'will_paginate', '~> 3.0.0'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+# RSS dependencies
+gem 'feedzirra', '~> 0.2.0.rc2'
+gem 'opml-reader', '~> 0.0.1'
+
+# Bootstrap
+gem 'bootstrap-sass', '>= 2.3'
+
+# Pagination
+gem 'will_paginate', '~> 3.0.0'
