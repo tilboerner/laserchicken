@@ -102,8 +102,10 @@ body {
 }
 
 .user {
-	float: right;
+	background-color: black;
 	border: 1px solid black;
+	border-radius: 0 0 0 8px;
+	float: right;
 }
 
 
@@ -142,6 +144,10 @@ body {
 		padding: 0;
 	}
 
+	.actions {
+		float: left;
+	}
+
 	.title a {
 		color: $main_foreground;
 	}
@@ -162,6 +168,7 @@ body {
 	}
 
 	.parent {
+		clear: left;
 		float: left;
 		color: $minor_foreground;
 		padding-left: 10px;
