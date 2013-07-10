@@ -9,11 +9,3 @@ one:
   published: 2013-06-19 14:33:46
   feed_id: 
 
-two:
-  title: MyString
-  url: MyString
-  author: MyString
-  summary: MyText
-  content: MyText
-  published: 2013-06-19 14:33:46
-  feed_id: 

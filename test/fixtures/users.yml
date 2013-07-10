@@ -1,11 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
-  password_digest: MyString
+first_admin:
+  id: 1
+  name: Archie
+  is_admin: true
+
+some_user:
+  id: 2
+  name: Mike
   is_admin: false
 
-two:
-  name: MyString
-  password_digest: MyString
+other_user:
+  id: 3
+  name: Natasha
   is_admin: false

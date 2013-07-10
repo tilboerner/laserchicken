@@ -6,10 +6,3 @@ one:
   feed_url: MyString
   etag: MyString
   last_modified: 2013-06-19 12:17:31
-
-two:
-  title: MyString
-  url: MyString
-  feed_url: MyString
-  etag: MyString
-  last_modified: 2013-06-19 12:17:31
