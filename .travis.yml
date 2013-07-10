@@ -2,6 +2,6 @@ language: ruby
 rvm:
   - "2.0.0"
   - "1.9.3"
-  - "ruby-head"
 before_script:
   - cp config/database.travis.yml config/database.yml
+  - bundle exec rake db:setup
