@@ -1,11 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  title: MyString
-  url: MyString
-  author: MyString
-  summary: MyText
-  content: MyText
+A1:
+  title: A1.title
+  url: A1.url
+  author: A1.author
+  summary: A1.summary
+  content: A1.content
   published: 2013-06-19 14:33:46
-  feed_id: 
+  feed_id: 1
 
+A2:
+  title: A2.title
+  url: A2.url
+  author: A2.author
+  summary: A2.summary
+  content: A2.content
+  published: 2013-06-19 14:35:46
+  feed_id: 1

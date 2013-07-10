@@ -20,7 +20,8 @@ class Entry < ActiveRecord::Base
   scope :subscribed_by, -> (user) { joins(:subscriptions).where(subscriptions: {user: user}) }
 
   def unseen?(user)
-    self.user_states.where(user: user).seen
+    state = self.user_states.where(user: user).first
+    state.nil? || state.seen?
   end
 
   def subscribed_by?(user)
@@ -32,7 +33,7 @@ class Entry < ActiveRecord::Base
   end
 
   def snippet
-    truncate(strip_tags((self.summary or self.content)), length: 200, separator: ' ')
+    truncate(strip_tags((self.summary or self.content or '')), length: 200, separator: ' ')
   end
 
   def text
