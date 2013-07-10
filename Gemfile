@@ -43,7 +43,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # gem 'capistrano', group: :development
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
+# gem 'debugger', group: [:development, :test]  # don't include in Travis CI Gemfiles
 
 # RSS dependencies
 gem 'feedzirra', '~> 0.2.0.rc2'
