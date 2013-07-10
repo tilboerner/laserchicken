@@ -12,7 +12,7 @@ class Feed < ActiveRecord::Base
   validates :feed_url, presence: true, uniqueness: true, feed: true
 
   has_many :entries, dependent: :destroy
-  has_many :subscriptions, dependent: :destroy
+  has_many :subscriptions, inverse_of: :feed, dependent: :destroy
 
   scope :active, -> { joins(:subscriptions).group('feeds.id').readonly(false) }
 
@@ -23,7 +23,7 @@ class Feed < ActiveRecord::Base
 	end
 
   def active?
-    subscriptions.any?
+    subscriptions.count > 0
   end
 
 end
