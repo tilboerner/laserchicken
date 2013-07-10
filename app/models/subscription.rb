@@ -47,6 +47,7 @@ class Subscription < ActiveRecord::Base
   end
 
   def ensure_dependent_fields_are_set
+    return unless feed
     set_last_modified_from_feed if self.last_modified.nil?
     set_title_from_feed if self.title.nil?
   end
