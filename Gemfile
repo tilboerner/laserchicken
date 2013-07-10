@@ -54,3 +54,8 @@ gem 'bootstrap-sass', '>= 2.3'
 
 # Pagination
 gem 'will_paginate', '~> 3.0.0'
+
+group :test do
+  gem 'minitest-spec-rails'
+  gem 'turn', require: false
+end
