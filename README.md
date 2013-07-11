@@ -36,6 +36,19 @@ Growth Status: _fledgling_ (alpha)
 
 For the time being, the HEAD commit on https://github.com/tilboerner/laserchicken is considered the project version.
 
+
+## Screenshots
+
+
+[![Home Page][2]][1]
+[![Entry View][4]][3]
+
+[1]: http://tilboerner.github.io/laserchicken/images/laserchicken_home_800x600.png
+[2]: http://tilboerner.github.io/laserchicken/images/laserchicken_home_thumb.jpg (Home Page)
+
+[3]: http://tilboerner.github.io/laserchicken/images/laserchicken_full_entry_800x711.png
+[4]: http://tilboerner.github.io/laserchicken/images/laserchicken_full_entry_thumb.jpg (Entry View)
+
 ## You need
 
 * Ruby 1.9.3 or above, **Ruby 2.0** preferred  
