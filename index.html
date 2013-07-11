@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Laserchicken : RSS reader web application built on Rails" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Laserchicken</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/tilboerner/laserchicken">View on GitHub</a>
+
+          <h1 id="project_title">Laserchicken</h1>
+          <h2 id="project_tagline">RSS reader web application built on Rails</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/tilboerner/laserchicken/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/tilboerner/laserchicken/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="laserchicken" class="anchor" href="#laserchicken"><span class="octicon octicon-link"></span></a>Laserchicken</h1>
+
+<p>A RSS reader web application built on Rails.</p>
+
+<p>Conceived as a replacement for the late <a href="http://en.wikipedia.org/wiki/Google_Reader">Google Reader</a>, and as such it can import your subscriptions from <a href="https://www.google.com/takeout/#custom:reader" title="Google Reader backups">backups</a> (which you can still get until 12PM PST July 15, 2013).</p>
+
+<p>Find Laserchicken on <a href="https://github.com/tilboerner/laserchicken">https://github.com/tilboerner/laserchicken</a> .</p>
+
+<h2>
+<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<p>Growth Status: <em>fledgling</em> (alpha)</p>
+
+<h3>
+<a name="can" class="anchor" href="#can"><span class="octicon octicon-link"></span></a>can:</h3>
+
+<ul>
+<li>multi-user</li>
+<li>subscribe to feeds</li>
+<li>read and star entries</li>
+<li>filter by new and starred</li>
+<li>import subscriptions from XML</li>
+<li>responsive layout to support mobile devices</li>
+</ul><h3>
+<a name="pending" class="anchor" href="#pending"><span class="octicon octicon-link"></span></a>pending:</h3>
+
+<ul>
+<li>keyboard shortcuts</li>
+<li>import stars and likes from Google Reader JSON</li>
+<li>shinier UI</li>
+<li>search (?)</li>
+</ul><h3>
+<a name="version" class="anchor" href="#version"><span class="octicon octicon-link"></span></a>version:</h3>
+
+<p>For the time being, the HEAD commit on <a href="https://github.com/tilboerner/laserchicken">https://github.com/tilboerner/laserchicken</a> is considered the project version.</p>
+
+<h2>
+<a name="you-need" class="anchor" href="#you-need"><span class="octicon octicon-link"></span></a>You need</h2>
+
+<ul>
+<li>Ruby 1.9.3 or above, <strong>Ruby 2.0</strong> preferred<br><ul>
+<li>(includes RubyGems in standard library)</li>
+</ul>
+</li>
+<li>
+<strong>Bundler</strong> <a href="http://bundler.io">http://bundler.io</a>
+</li>
+<li>
+<strong>Rails 4.0</strong> (!) <a href="http://rubyonrails.org">http://rubyonrails.org</a>
+</li>
+</ul><h2>
+<a name="how-to" class="anchor" href="#how-to"><span class="octicon octicon-link"></span></a>How to...</h2>
+
+<h3>
+<a name="setup" class="anchor" href="#setup"><span class="octicon octicon-link"></span></a>Setup</h3>
+
+<pre><code>$ git clone https://github.com/tilboerner/laserchicken.git
+$ cd laserchicken
+$ bundle install
+$ rake db:setup
+$ rails server
+$ firefox http://localhost:3000
+</code></pre>
+
+<h3>
+<a name="update-feeds" class="anchor" href="#update-feeds"><span class="octicon octicon-link"></span></a>Update feeds</h3>
+
+<p>Admin users can trigger manual updates from the web interface. The updating is done by a <em>rake</em> task, however, so you can get <strong>automatic updates</strong> by scheduling</p>
+
+<pre><code>$ rake update_active_feeds
+</code></pre>
+
+<p>to run regularly in the application dir.</p>
+
+<h3>
+<a name="import-subscriptions" class="anchor" href="#import-subscriptions"><span class="octicon octicon-link"></span></a>Import subscriptions</h3>
+
+<p>If you have a subscription list in OPML format, like, say, from your prior <a href="http://en.wikipedia.org/wiki/Google_Reader">Google Reader</a> account, you can import them for your user by running:</p>
+
+<pre><code>$ rake import_subscriptions_from_opml \
+&gt; OPML_SOURCE=path/to/subscriptions.xml \
+&gt; USER_NAME=your_username
+</code></pre>
+
+<p>(You can still get Google Reader <a href="https://www.google.com/takeout/#custom:reader" title="Google Reader backups">backups</a> until 12PM PST July 15, 2013.)</p>
+
+<h3>
+<a name="run-in-production-environment" class="anchor" href="#run-in-production-environment"><span class="octicon octicon-link"></span></a>Run in production environment</h3>
+
+<p>Rails knows at least three different modes to operate in: <em>development</em>, <em>test</em>, and <em>production</em>. The above instructions should have happened in <em>development</em> by default, which is fine while working on the application locally. Running in <em>production</em> gives you speed and efficiency (among other things), so if you're done evaluating, you'll want to do that.</p>
+
+<p>To <strong>get production mode</strong>, simply arrange for <code>$RAILS_ENV</code> to contain the name of the wanted environment: <code>RAILS_ENV=production</code>. You can also start the server with <code>rails server -e production</code>.</p>
+
+<p>Since there are different databases for every environment, you need to <code>rake db:setup</code> again with the production environment set. If the content of the development DB is dear to you, just copy it to production: </p>
+
+<pre><code>$ cp db/development.sqlite3 db/production.sqlite3
+</code></pre>
+
+<p>(This assumes that you intent to use <em>SQLite3</em> for your production database, too.)</p>
+
+<p>If you don't have the <code>rails server</code> running behind another web server and want it to serve the static assets for you (like CSS or JavaScript files), you may want to open </p>
+
+<pre><code>config/environments/production.rb
+</code></pre>
+
+<p>and have a look at <code>config.serve_static_assets</code> and <code>config.assets.compile</code>. Otherwise, relevant files will not get out to the client.</p>
+
+<h3>
+<a name="learn-about-rails" class="anchor" href="#learn-about-rails"><span class="octicon octicon-link"></span></a>Learn about Rails</h3>
+
+<p>Try out <code>rails console</code> and <code>rails console --sandbox</code>. </p>
+
+<p>Reading material, in order of in-depth-ness:</p>
+
+<ul>
+<li><a href="http://guides.rubyonrails.org/getting_started.html">Getting Started</a></li>
+<li><a href="http://guides.rubyonrails.org/">Rails Guides</a></li>
+<li>
+<a href="http://ruby.railstutorial.org/ruby-on-rails-tutorial-book?version=4.0">Rails Tutorial</a> (it's a whole book, also available online)</li>
+<li>
+<a href="http://api.rubyonrails.org/">API doc</a>.</li>
+</ul><h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>(The MIT License)</p>
+
+<p>Copyright (c) 2013: Tilman Börner (<a href="mailto:tilman.boerner@gmx.net">tilman.boerner@gmx.net</a>)</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+<p>Based on <em>Ruby on Rails</em> and <em>Feedzirra</em>, also released under the MIT License.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Laserchicken maintained by <a href="https://github.com/tilboerner">tilboerner</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
