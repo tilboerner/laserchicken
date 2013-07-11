@@ -51,7 +51,7 @@ For the time being, the HEAD commit on https://github.com/tilboerner/laserchicke
 
 ## You need
 
-* Ruby 1.9.3 or above, **Ruby 2.0** preferred  
+* **Ruby 2.0**
     * (includes RubyGems in standard library)
 * **Bundler** http://bundler.io
 * **Rails 4.0** (!) http://rubyonrails.org
