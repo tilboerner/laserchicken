@@ -2,9 +2,3 @@ language: ruby
 rvm:
   - "2.0.0"
   - "1.9.3"
-before_script:
-  - cp config/database.travis.yml config/database.yml
-script:
-  - export RAILS_ENV=test
-  - bundle exec rake db:setup --trace
-  - bundle exec rake
