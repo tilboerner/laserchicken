@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter  { require_admin_user(exception: !User.exists?) }
+  before_action  { require_admin_user(exception: !User.exists?) }
 
   def index
     @users = User.all
