@@ -6,8 +6,8 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   include SessionsHelper
 
-  before_filter :require_logged_in_user
-  before_filter { establish_context }
+  before_action :require_logged_in_user
+  before_action { establish_context }
 
   def handle_unverified_request
   	sign_out
