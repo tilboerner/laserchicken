@@ -1,7 +1,7 @@
 class EntriesController < ApplicationController
   include EntriesHelper
 
-  before_filter { entries_context }
+  before_action { entries_context }
 
   def index
   end
