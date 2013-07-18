@@ -59,3 +59,8 @@ group :test do
   gem 'minitest-spec-rails'
   gem 'turn', require: false
 end
+
+# make it possible to include additional gems for a local installation
+if File.exists?('Gemfile.local') then
+  eval File.read('Gemfile.local'), nil, 'Gemfile.local'
+end

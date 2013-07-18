@@ -17,3 +17,6 @@
 
 # Sublime metadata
 .sublime*
+
+# local specifics
+Gemfile.local
