@@ -30,9 +30,10 @@ class ApplicationController < ActionController::Base
   end
 
   def call_rake(task, options = {})
+    logfile = "#{Rails.root}/log/rake.log"
     options[:rails_env] ||= Rails.env
     args = options.map { |n, v| "#{n.to_s.upcase}='#{v}'" }
-    system "/usr/bin/rake #{task} #{args.join(' ')} --trace 2>&1 >> #{Rails.root}/log/rake.log &"
+    system "/usr/bin/rake #{task} #{args.join(' ')} >> #{logfile} 2>> #{logfile} &"
   end
 
 
