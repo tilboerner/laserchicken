@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(params.require(:user).permit(:name, :password, :is_admin))
-      flash[:success] = "User #{@user.name} updated"
+      flash[:info] = "User #{@user.name} updated"
       redirect_back_or_rescue
     else
       flash[:error] =  "Cannot update user #{@user.name}: " + get_model_errors
@@ -42,7 +42,7 @@ private
 
   def persist_user
     if @user.save
-      flash[:success] = "User #{@user.name} created"
+      flash[:info] = "User #{@user.name} created"
       redirect_back_or_rescue
     else
       flash[:error] = "Cannot create user: " + get_model_errors(@user)
@@ -53,7 +53,7 @@ private
   def persist_first_user
     if @user.save
       sign_in(@user)
-      flash[:success] = "Welcome to #{@appname}, #{@user.name}!"
+      flash[:info] = "Welcome to #{@appname}, #{@user.name}!"
       redirect_303 root_path
     else
       flash.now[:error] = "Cannot create user: " + get_model_errors(@user)

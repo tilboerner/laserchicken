@@ -19,7 +19,7 @@ class EntriesController < ApplicationController
         entry.userstate(current_user).update(seen: true)
       end
     end
-    flash[:success] = 'all marked as seen'
+    flash[:info] = 'all marked as seen'
     redirect_back_or_rescue
   end
 

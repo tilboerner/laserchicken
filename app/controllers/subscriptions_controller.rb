@@ -23,7 +23,7 @@ class SubscriptionsController < ApplicationController
 		url = params.require(:subscription).permit(:feed_url)
 		feed = Feed.where(url).first_or_create!
 		subscription = Subscription.where(user: current_user, feed: feed).first_or_create
-		flash[:success] = "Subscribed to feed #{feed.title}"
+		flash[:info] = "Subscribed to feed #{feed.title}"
 		redirect_303 subscription
 	rescue ActiveRecord::RecordInvalid
 		flash[:error] =  "Not a valid feed: #{url[:feed_url]}"
