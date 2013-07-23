@@ -63,6 +63,13 @@
         <%= yield(:next) %>
     </nav>
 
+
+    <footer>
+        <%= @appname %>
+        is <%= link_to 'open source', 'https://github.com/tilboerner/laserchicken' %>!
+        <%= image_tag 'egg-icon.jpg', style: 'height: 32px' %>
+    </footer>
+
     <% if Rails.env.development? %>
     <hr />
     <section class="debug">
@@ -70,11 +77,6 @@
         <%= debug(instance_values.slice('breadcrumbs', 'title', 'parent', 'model', 'filters')) %>
     </section>
     <% end %>
-
-    <footer>
-
-    </footer>
-
 </div>
 </body>
 </html>

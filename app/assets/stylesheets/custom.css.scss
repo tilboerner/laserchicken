@@ -88,6 +88,19 @@ body {
 		}
 
 	}
+
+	> footer {
+		border-top: 1px solid $minor_background;
+		color: gray;
+		padding: 10px;
+		text-align: right;
+
+		a {
+			color: gray;
+			text-decoration: underline;
+		}
+
+	}
 }
 
 #logo {
