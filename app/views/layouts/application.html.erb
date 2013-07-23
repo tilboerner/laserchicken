@@ -11,7 +11,7 @@
 <div id="all">
 
     <div class="banner">
-        <%= link_to "I am #{@appname}!", root_path, id: "logo" %>
+        <%= link_to image_tag('logo.jpg', alt: 'I am Laserchicken!', width: 250), root_path, id: "logo" %>
 
         <% if signed_in? %>
             <div class="user">

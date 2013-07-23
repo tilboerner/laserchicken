@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
 		user = User.find_by_name(name)
 		if user and user.authenticate(password)
 			sign_in user
-			flash[:success] = "Signed in as #{name}"
+			flash[:info] = "Signed in as #{name}"
 			redirect_303 root_path
 		else
 			flash[:error] = 'Invalid name or password'
