@@ -25,9 +25,9 @@ private
 	def model_to_parser(model)
 		# https://gist.github.com/pauldix/132671
 		p = Feedzirra::Parser::RSS.new
-		p.feed_url = model.feed_url
-		p.etag = model.etag
-		p.last_modified = model.last_modified
+		Feedzirra::FeedUtilities::UPDATABLE_ATTRIBUTES.each do |name|
+			p.send("#{name}=", model.send(name))
+		end
 		if model.entries.first
 			latest = Feedzirra::Parser::RSSEntry.new
 			latest.url = model.entries.first.url
