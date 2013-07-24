@@ -44,6 +44,4 @@ describe Feed do
     create_valid_feed.subscriptions.must_be_empty
   end
 
-
-
 end

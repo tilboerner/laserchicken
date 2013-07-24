@@ -16,7 +16,8 @@ class Feed < ActiveRecord::Base
 
   scope :active, -> { joins(:subscriptions).group('feeds.id').readonly(false) }
 
-	after_create :fetch
+  after_create :fetch
+  before_save :uniencode_binary_etags
 
 	def fetch
 		update_feed(self)
@@ -24,6 +25,14 @@ class Feed < ActiveRecord::Base
 
   def active?
     subscriptions.count > 0
+  end
+
+private
+
+  def uniencode_binary_etags
+    if self.etag && self.etag.encoding == Encoding::ASCII_8BIT
+      self.etag.encode!(Encoding::UTF_8)
+    end
   end
 
 end
