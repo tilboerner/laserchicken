@@ -22,11 +22,14 @@ module FeedsHelper
 
 private
 
+	FEED_UPDATABLE_ATTRIBUTES = %w(title url last_modified etag)
+
 	def model_to_parser(model)
 		# https://gist.github.com/pauldix/132671
 		p = Feedzirra::Parser::RSS.new
-		Feedzirra::FeedUtilities::UPDATABLE_ATTRIBUTES.each do |name|
-			p.send("#{name}=", model.send(name))
+		relevant_attributes = FEED_UPDATABLE_ATTRIBUTES + ['feed_url']
+		relevant_attributes.each do |name|
+			p.send "#{name}=", model.send(name)
 		end
 		if model.entries.first
 			latest = Feedzirra::Parser::RSSEntry.new
@@ -37,14 +40,15 @@ private
 	end
 
 	def update_feed_from_parser(feedmodel, parser)
-		update_model_attributes(feedmodel, parser) if parser.updated?
-		create_entries(feedmodel, parser.new_entries) if parser.has_new_entries?
-		feedmodel.subscriptions.each { |s| s.update_dependent_fields }
+		feedmodel.with_lock do
+			update_model_attributes(feedmodel, parser) if parser.updated?
+			create_entries(feedmodel, parser.new_entries) if parser.has_new_entries?
+			feedmodel.subscriptions.each { |s| s.update_dependent_fields }
+		end
 	end
 
 	def update_model_attributes(model, parser)
-		updatable_attributes = %w(title url last_modified etag)
-		updatable_attributes.each do |name|
+		FEED_UPDATABLE_ATTRIBUTES.each do |name|
 			original_value = model.send name
 			new_value = parser.send name
 			unless new_value.nil? || new_value == original_value
