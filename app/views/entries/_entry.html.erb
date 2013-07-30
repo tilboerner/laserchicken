@@ -41,7 +41,7 @@
 	</div>
 	<footer>
 		<%= render @user_state %>
-		<%= link_to('(web)', @entry.url) %>
+		<%= link_to('(web)', @entry.url, :data => {:type => 'web'}) %>
 	</footer>
 <% end %>
 </article>
