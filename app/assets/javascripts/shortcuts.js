@@ -1,7 +1,7 @@
 $(function(){
     $(window).keypress(function(event){
         // Overview
-        if( ($('article').length > 1) && String.fromCharCode(event.keyCode) == 'A') {
+        if(($('input:focus').length <= 0) && ($('article').length > 1) && (String.fromCharCode(event.keyCode) == 'A')) {
             $("a[data-type='mark_all_seen']").click();
         }
         // Entry
