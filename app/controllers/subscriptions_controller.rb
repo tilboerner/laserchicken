@@ -21,6 +21,7 @@ class SubscriptionsController < ApplicationController
 
 	def create
 		url = params.require(:subscription).permit(:feed_url)
+		url.map{|k,v| v.gsub!(/\s+/, "") }
 		feed = Feed.where(url).first_or_create!
 		subscription = Subscription.where(user: current_user, feed: feed).first_or_create
 		flash[:info] = "Subscribed to feed #{feed.title}"
