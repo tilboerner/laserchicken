@@ -4,7 +4,7 @@ $(function(){
         var key = String.fromCharCode(charCode);
 
 
-        if ($('input:focus').length <= 0){
+        if ($('input:focus').length <= 0 && $('textarea:focus').length <= 0){
 
             // Overview
             if(($('article').length > 1) && (key == 'A')) {
