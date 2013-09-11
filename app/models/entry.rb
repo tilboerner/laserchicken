@@ -48,4 +48,29 @@ class Entry < ActiveRecord::Base
     end
   end
 
+  def self.remove_duplicates
+    dupecount = 0
+    groups = Entry
+      .select('title, url, author, summary, content, published, COUNT(*) AS count')
+      .group(:title, :url, :author, :summary, :content, :published)
+      .having('count > 1')
+    self.transaction do
+      groups.each do |grp|
+        duplicates = Entry
+          .where(
+            title: grp.title, url: grp.url, author: grp.author,
+            summary: grp.summary, content: grp.content, published: grp.published)
+          .to_a
+        original = duplicates.shift
+        logger.info "removing #{duplicates.size} duplicates of entry [#{original.id}: #{original.title}] (#{original.feed.title})"
+        duplicates.each do |e|
+          e.destroy
+          dupecount += 1
+        end
+      end
+
+    end
+    logger.info "#{dupecount} duplicated removed."
+  end
+
 end

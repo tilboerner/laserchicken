@@ -30,8 +30,13 @@ task :import_subscriptions_from_opml => :environment do
     end
   end
   unless errors.empty?
-    errors.each do |url, error|
-      $stderr.puts "#{url}: #{error.to_s}"
+    errors.each do |error_url, error|
+      $stderr.puts "#{error_url}: #{error.to_s}"
     end
   end
+end
+
+desc "Clean up duplicate entries"
+task :remove_duplicate_entries => :environment do
+  Entry.remove_duplicates
 end
