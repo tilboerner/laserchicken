@@ -57,16 +57,16 @@ class Entry < ActiveRecord::Base
     groups = Entry
       .select('title, url, author, summary, content, published, COUNT(*) AS count')
       .group(:title, :url, :author, :summary, :content, :published)
-      .having('count > 1')
+      .having('count > 1')  # group.size >= 2
     self.transaction do
       groups.each do |grp|
-        duplicates = Entry.includes(:user_states, :feed)
+        duplicates = Entry.includes(:user_states, :feed).reorder(:id)
           .where(
             title: grp.title, url: grp.url, author: grp.author,
             summary: grp.summary, content: grp.content, published: grp.published)
           .to_a
-        original = duplicates.shift
-        logger.info "removing #{duplicates.size} duplicates of entry [#{original.id}: #{original.title}] (#{original.feed.title})"
+        latest = duplicates.pop
+        logger.info "removing #{duplicates.size} #{'duplicate'.pluralize duplicates.size} of entry [#{latest.id}: #{latest.title}] (#{latest.feed.title})"
         duplicates.each do |e|
           if e.starred?
             logger.info "  - except starred duplicate [#{e.id}]"
@@ -78,7 +78,7 @@ class Entry < ActiveRecord::Base
       end
 
     end
-    logger.info "#{dupecount} duplicates removed."
+    logger.info "#{dupecount} #{'duplicate'.pluralize dupecount} removed."
   end
 
 end
