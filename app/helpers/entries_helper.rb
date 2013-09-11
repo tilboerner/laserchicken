@@ -19,7 +19,8 @@ module EntriesHelper
       state_word,
       user_state_path(entry.id, user_state: {seen: !user_state.seen}),
       method: :put,
-      class: classes)
+      class: classes,
+      data: {:type => 'read_unread'})
   end
 
   def star_unstar_link(entry, options = {})
@@ -31,7 +32,8 @@ module EntriesHelper
       state_word,
       user_state_path(entry.id, user_state: {starred: !user_state.starred}),
       method: :put,
-      class: classes)
+      class: classes,
+      data: {:type => 'star_unstar'})
   end
 
   def mark_all_seen_action(basepath, options={})
@@ -39,7 +41,7 @@ module EntriesHelper
     text = options[:text] || 'mark all as seen'
     title = 'mark all as seen'
     classes = [:action] + (options[:classes] || [])
-    link_to "#{text}", app_path(path), method: :put, class: classes, title: title
+    link_to "#{text}", app_path(path), method: :put, class: classes, title: title, data: {:type => 'mark_all_seen'}
   end
 
   def guess_a_parent_for(entry)
