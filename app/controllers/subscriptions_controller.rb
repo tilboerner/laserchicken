@@ -20,8 +20,9 @@ class SubscriptionsController < ApplicationController
 	end
 
 	def create
-		url = params.require(:subscription).permit(:feed_url)
-		feed = Feed.where(url).first_or_create!
+		subscription_params = params.require(:subscription).permit(:feed_url)
+    url = UrlSanitizer.new(subscription_params[:feed_url]).url
+    feed = Feed.where(feed_url: url).first_or_create!
 		subscription = Subscription.where(user: current_user, feed: feed).first_or_create
 		flash[:info] = "Subscribed to feed #{feed.title}"
 		redirect_303 subscription
