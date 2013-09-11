@@ -31,9 +31,9 @@ private
 		relevant_attributes.each do |name|
 			p.send "#{name}=", model.send(name)
 		end
-		if model.entries.first
+		if last_entry = model.entries.reorder(:id).last
 			latest = Feedzirra::Parser::RSSEntry.new
-			latest.url = model.entries.first.url
+			latest.url = last_entry.url
 			p.entries = [latest]
 		end
 		p
@@ -62,7 +62,7 @@ private
 		newcount = new_entries.size
 		logger.info "Processing #{newcount} new " + 'entry'.pluralize(newcount)
 		ActiveRecord::Base.transaction do
-			for e in new_entries
+			new_entries.reverse_each do |e|
 				e.sanitize!
 				feedmodel.entries.create e.instance_values.slice 'title', 'url', 'author', 'summary', 'content', 'published'
 			end
