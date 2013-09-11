@@ -28,6 +28,10 @@ class Entry < ActiveRecord::Base
     feed.subscriptions.where(user: user).exists?
   end
 
+  def starred?
+    user_states.where(starred: true).any?
+  end
+
   def userstate(user)
     user_states.find_by(user: user) or UserState.new(user: user, entry: self)
   end
@@ -56,7 +60,7 @@ class Entry < ActiveRecord::Base
       .having('count > 1')
     self.transaction do
       groups.each do |grp|
-        duplicates = Entry
+        duplicates = Entry.includes(:user_states, :feed)
           .where(
             title: grp.title, url: grp.url, author: grp.author,
             summary: grp.summary, content: grp.content, published: grp.published)
@@ -64,13 +68,17 @@ class Entry < ActiveRecord::Base
         original = duplicates.shift
         logger.info "removing #{duplicates.size} duplicates of entry [#{original.id}: #{original.title}] (#{original.feed.title})"
         duplicates.each do |e|
-          e.destroy
-          dupecount += 1
+          if e.starred?
+            logger.info "  - except starred duplicate [#{e.id}]"
+          else
+            e.destroy
+            dupecount += 1
+          end
         end
       end
 
     end
-    logger.info "#{dupecount} duplicated removed."
+    logger.info "#{dupecount} duplicates removed."
   end
 
 end
